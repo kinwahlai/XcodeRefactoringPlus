@@ -49,6 +49,7 @@ static XcodeRefactoringPlus *sharedPlugin;
     if(menuItem)
     {
         unichar arrowKeyDown = NSDownArrowFunctionKey;
+        unichar arrowKeyUp = NSUpArrowFunctionKey;
         [[menuItem submenu] addItem:[NSMenuItem separatorItem]];
         
         NSMenuItem *deleteLineMenuItem = [[NSMenuItem alloc] initWithTitle:@"Delete Line" action:@selector(deleteLine) keyEquivalent:@"d"];
@@ -60,6 +61,11 @@ static XcodeRefactoringPlus *sharedPlugin;
         [duplicateLineMenuItem setTarget:self];
         [duplicateLineMenuItem setKeyEquivalentModifierMask:(NSCommandKeyMask | NSAlternateKeyMask)];
         [[menuItem submenu] addItem:duplicateLineMenuItem];
+        
+        NSMenuItem *moveLineUpMenuItem = [[NSMenuItem alloc] initWithTitle:@"Move Line Up" action:@selector(moveLineUp) keyEquivalent:[NSString stringWithCharacters:&arrowKeyUp length:1]];
+        [moveLineUpMenuItem setTarget:self];
+        [moveLineUpMenuItem setKeyEquivalentModifierMask:(NSAlternateKeyMask)];
+        [[menuItem submenu] addItem:moveLineUpMenuItem];
         
         NSMenuItem *moveLineDownMenuItem = [[NSMenuItem alloc] initWithTitle:@"Move Line Down" action:@selector(moveLineDown) keyEquivalent:[NSString stringWithCharacters:&arrowKeyDown length:1]];
         [moveLineDownMenuItem setTarget:self];
@@ -80,7 +86,6 @@ static XcodeRefactoringPlus *sharedPlugin;
             NSNotification *notification = [NSNotification notificationWithName:NSTextViewDidChangeSelectionNotification object:self.codeEditor];
             [self selectionDidChange:notification];
         }
-
     }
 }
 
@@ -130,7 +135,7 @@ static XcodeRefactoringPlus *sharedPlugin;
 {
     _currentRange     = range;
     _currentLineRange = [code lineRangeForRange:range];
-    _currentSelectedString = [code substringWithRange:range];
+    _currentSelectedString = [code substringWithRange:self.currentLineRange];
 }
 
 - (void)deleteLineInRange:(NSRange)range
@@ -195,8 +200,29 @@ static XcodeRefactoringPlus *sharedPlugin;
     }
 }
 
+-(void)moveLineUp
+{
+    if(self.codeEditor)
+    {
+        NSRange lCurrentLineRange = self.currentLineRange;
+        NSString *lineContent = [self.codeEditor.textStorage.string substringWithRange:lCurrentLineRange];
+        NSString *code = self.codeEditor.textStorage.string;
+    
+        NSRange lineAboveMovedLine = [self getPreviouseLineRange:code forRange:lCurrentLineRange];
+        
+        [self deleteLineInRange:lCurrentLineRange];
+        [self insertNewLineBelow:NSMakeRange(lineAboveMovedLine.location, 0) lineContent:lineContent];
+        
+        [self updateLineRange:lineAboveMovedLine AndSelectedString:code];
+    }
+}
+
 - (NSRange)getNextLineRange:(const NSString *)code forRange:(NSRange)range
 {
     return [code lineRangeForRange:NSMakeRange(range.location + range.length, 0)];
+}
+- (NSRange)getPreviouseLineRange:(const NSString *)code forRange:(NSRange)range
+{
+    return [code lineRangeForRange:NSMakeRange(range.location - 1, 0)];
 }
 @end

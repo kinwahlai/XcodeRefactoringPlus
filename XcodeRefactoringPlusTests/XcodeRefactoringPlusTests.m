@@ -19,6 +19,7 @@
 -(void)deleteLine;
 -(void)duplicateLine;
 -(void)moveLineDown;
+-(void)moveLineUp;
 -(void)selectionDidChange:(NSNotification *)notification;
 @end
 
@@ -66,7 +67,7 @@ end";
     [textView setSelectedRange:NSMakeRange(67, 8)];
     [myplugin selectionDidChange:notification];
     expect(myplugin.currentSelectedString).notTo.beNil();
-    expect(myplugin.currentSelectedString).to.equal(@"platform");
+    expect(myplugin.currentSelectedString).to.equal(@"platform :osx, \"10.8\"\n");
     expect([textView.string componentsSeparatedByString:@"\n"]).to.haveCountOf(11);
 }
 
@@ -146,7 +147,7 @@ end";
     expect([textView.string componentsSeparatedByString:@"\n"]).notTo.contain(@"target \"XcodeRefactoringPlus\" do");
 }
 
-- (void)testMoveDEFTo1LineDown
+- (void)testMove1LineDown
 {
     [textView setString:multilines];
     [textView setSelectedRange:NSMakeRange(0, 30)];
@@ -160,7 +161,7 @@ end";
     expect(splitted[1]).to.equal(@"# Uncomment this line to define a global platform for your project");
 }
 
-- (void)testMoveDEFTo2LineDown
+- (void)testMove2LineDown
 {
     [textView setString:multilines];
     [textView setSelectedRange:NSMakeRange(167, 0)];
@@ -176,5 +177,36 @@ end";
     expect(splitted[8]).to.equal(@"pod 'Expecta', '~> 0.2.3'");
     expect(splitted[9]).to.equal(@"endpod 'OCMock', '~> 2.2.3'");
 }
+
+- (void)testMove1LineUp
+{
+    [textView setString:multilines];
+    [textView setSelectedRange:NSMakeRange(192, 0)];
+    [myplugin selectionDidChange:notification];
+    [myplugin moveLineUp];
+    expect(myplugin.currentRange.location).to.equal(167);
+    expect(myplugin.currentSelectedString).to.startWith(@"pod 'Expecta'");
+    NSArray *splitted = [textView.string componentsSeparatedByString:@"\n"];
+    expect(splitted).to.haveCountOf(11);
+    expect(splitted[8]).to.equal(@"pod 'Expecta', '~> 0.2.3'");
+    expect(splitted[9]).to.equal(@"pod 'OCMock', '~> 2.2.3'");
+}
+- (void)testMove2LineUp
+{
+    [textView setString:multilines];
+    [textView setSelectedRange:NSMakeRange(192, 0)];
+    [myplugin selectionDidChange:notification];
+    [myplugin moveLineUp];
+    [myplugin moveLineUp];
+    expect(myplugin.currentRange.location).to.equal(129);
+    expect(myplugin.currentSelectedString).to.startWith(@"pod 'Expecta'");
+    NSArray *splitted = [textView.string componentsSeparatedByString:@"\n"];
+    expect(splitted).to.haveCountOf(11);
+    expect(splitted[8]).to.equal(@"target \"XcodeRefactoringPlusTests\" do");
+    expect(splitted[9]).to.equal(@"pod 'OCMock', '~> 2.2.3'");
+}
+
+// moving multiline accoss the editor seems to have problem
+// moving up is not reliable, guess it is something to do with the newline thingy
 
 @end
