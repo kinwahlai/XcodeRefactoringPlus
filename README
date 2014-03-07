@@ -1,0 +1,3 @@
+Xcode Refactoring Plus
+This plugin is to extend the current refactoring function of xcode
+to include refactoring function from eclipse like move line, delete line
