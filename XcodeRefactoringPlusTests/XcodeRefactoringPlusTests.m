@@ -37,7 +37,6 @@
 - (void)setUp
 {
     [super setUp];
-    multilinesFromFile = [NSString stringWithContentsOfFile:@"/Users/developer/Documents/Development_Workspace/sample\ codes/XcodeRefactoringPlus/XcodeRefactoringPlus/SimpleText.txt" encoding:NSUTF8StringEncoding error:nil];
     multilines = @"# Uncomment this line to define a global platform for your project\n\
 platform :osx, \"10.8\"\n\
 \n\
@@ -173,7 +172,6 @@ end";
     expect(myplugin.currentRange.location).to.equal(193);
     expect(myplugin.currentSelectedString).to.startWith(@"endpod 'OCMock'");
     NSArray *splitted = [textView.string componentsSeparatedByString:@"\n"];
-    NSLog(@"testMoveDEFTo2LineDown \n%@",splitted);
     expect(splitted).to.haveCountOf(11);
     expect(splitted[8]).to.equal(@"pod 'Expecta', '~> 0.2.3'");
     expect(splitted[9]).to.equal(@"endpod 'OCMock', '~> 2.2.3'");

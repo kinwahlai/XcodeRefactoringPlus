@@ -9,8 +9,8 @@
 #import <AppKit/AppKit.h>
 
 @interface XcodeRefactoringPlus : NSObject
-@property (assign) NSRange currentRange;
-@property (assign) NSRange currentLineRange;
-@property (nonatomic, retain) NSString *currentSelectedString;
-@property (nonatomic, retain) NSTextView *codeEditor;
+@property (readonly) NSRange currentRange;
+@property (readonly) NSRange currentLineRange;
+@property (readonly) NSString *currentSelectedString;
+@property (readonly) NSTextView *codeEditor;
 @end

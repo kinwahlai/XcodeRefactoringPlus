@@ -11,12 +11,17 @@
 static XcodeRefactoringPlus *sharedPlugin;
 
 @interface XcodeRefactoringPlus()
-
+{
+    NSRange _currentRange;
+    NSRange _currentLineRange;
+    NSString *_currentSelectedString;
+    NSTextView *_codeEditor;
+}
 @property (nonatomic, strong) NSBundle *bundle;
 @end
 
 @implementation XcodeRefactoringPlus
-
+@synthesize currentRange=_currentRange, currentLineRange = _currentLineRange, currentSelectedString = _currentSelectedString,codeEditor = _codeEditor;
 + (void)pluginDidLoad:(NSBundle *)plugin
 {
     static id sharedPlugin = nil;
@@ -67,7 +72,7 @@ static XcodeRefactoringPlus *sharedPlugin;
         if(!self.codeEditor){
             NSResponder *firstResponder = [[NSApp keyWindow] firstResponder];
             if([firstResponder isKindOfClass:NSClassFromString(@"DVTSourceTextView")] && [firstResponder isKindOfClass:[NSTextView class]]){
-                self.codeEditor = (NSTextView *)firstResponder;
+                _codeEditor = (NSTextView *)firstResponder;
             }
         }
         
@@ -112,7 +117,7 @@ static XcodeRefactoringPlus *sharedPlugin;
      */
     if([[notification object] isKindOfClass:[NSTextView class]])
     {
-		self.codeEditor = (NSTextView *)[notification object];
+		_codeEditor = (NSTextView *)[notification object];
         NSArray *selectedRanges = [self.codeEditor selectedRanges];
         if(selectedRanges.count >= 1)
         {
@@ -123,9 +128,9 @@ static XcodeRefactoringPlus *sharedPlugin;
 
 -(void)updateLineRange:(NSRange)range AndSelectedString:(const NSString *)code
 {
-    self.currentRange     = range;
-    self.currentLineRange = [code lineRangeForRange:range];
-    self.currentSelectedString = [code substringWithRange:range];
+    _currentRange     = range;
+    _currentLineRange = [code lineRangeForRange:range];
+    _currentSelectedString = [code substringWithRange:range];
 }
 
 - (void)deleteLineInRange:(NSRange)range
@@ -160,24 +165,31 @@ static XcodeRefactoringPlus *sharedPlugin;
 	{
 		NSString *lineContent = [self.codeEditor.textStorage.string substringWithRange:self.currentLineRange];
         [self insertNewLineBelow:NSMakeRange(self.currentLineRange.location + self.currentLineRange.length, 0) lineContent:lineContent];
-        // maybe we should continue to highlight the line
-        
 	}
+}
+
+- (void) showMessageBox:(NSString *)text
+{
+    NSAlert *alert = [[NSAlert alloc] init];
+    
+    [alert setMessageText:text];
+    [alert runModal];
 }
 
 -(void)moveLineDown
 {
     if(self.codeEditor)
     {
-        NSString *lineContent = [self.codeEditor.textStorage.string substringWithRange:self.currentLineRange];
+        NSRange lCurrentLineRange = self.currentLineRange;
+        NSString *lineContent = [self.codeEditor.textStorage.string substringWithRange:lCurrentLineRange];
         
         NSString *code = self.codeEditor.textStorage.string;
-        NSRange nextLineRange = [self getNextLineRange:code forRange:self.currentLineRange];
+        NSRange nextLineRange = [self getNextLineRange:code forRange:lCurrentLineRange];
         
         [self insertNewLineBelow:NSMakeRange(nextLineRange.location + nextLineRange.length, 0) lineContent:lineContent];
-        [self deleteLineInRange:self.currentLineRange];
+        [self deleteLineInRange:lCurrentLineRange];
 
-        NSRange lineAboveMovedLine = NSMakeRange(nextLineRange.location - self.currentLineRange.length, nextLineRange.length);
+        NSRange lineAboveMovedLine = NSMakeRange(nextLineRange.location - lCurrentLineRange.length, nextLineRange.length);
         nextLineRange = [self getNextLineRange:code forRange:lineAboveMovedLine];
         [self updateLineRange:nextLineRange AndSelectedString:code];
     }
