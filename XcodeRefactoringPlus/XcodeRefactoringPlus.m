@@ -8,6 +8,9 @@
 
 #import "XcodeRefactoringPlus.h"
 
+BOOL isNewline(unichar ch) { return (ch >= 0xA && ch <= 0xD) || ch == 0x85; } // What's the defference with [NSCharacterSet newlineCharacterSet] characterIsMember:] ?
+
+
 static XcodeRefactoringPlus *sharedPlugin;
 
 @interface XcodeRefactoringPlus()
@@ -21,7 +24,7 @@ static XcodeRefactoringPlus *sharedPlugin;
 @end
 
 @implementation XcodeRefactoringPlus
-@synthesize currentRange=_currentRange, currentLineRange = _currentLineRange, currentSelectedString = _currentSelectedString,codeEditor = _codeEditor;
+@synthesize currentLineRange = _currentLineRange, currentSelectedString = _currentSelectedString,codeEditor = _codeEditor;
 + (void)pluginDidLoad:(NSBundle *)plugin
 {
     static id sharedPlugin = nil;
@@ -101,6 +104,11 @@ static XcodeRefactoringPlus *sharedPlugin;
         NSResponder *firstResponder = [[NSApp keyWindow] firstResponder];
         return ([firstResponder isKindOfClass:NSClassFromString(@"DVTSourceTextView")] && [firstResponder isKindOfClass:[NSTextView class]]);
     }
+    else if([menuItem action] == @selector(moveLineUp))
+    {
+        NSResponder *firstResponder = [[NSApp keyWindow] firstResponder];
+        return ([firstResponder isKindOfClass:NSClassFromString(@"DVTSourceTextView")] && [firstResponder isKindOfClass:[NSTextView class]]);
+    }
     else if([menuItem action] == @selector(moveLineDown))
     {
         NSResponder *firstResponder = [[NSApp keyWindow] firstResponder];
@@ -159,9 +167,18 @@ static XcodeRefactoringPlus *sharedPlugin;
 - (void)insertNewLineBelow:(NSRange)startRange lineContent:(NSString *)lineContent
 {
     [self.codeEditor setSelectedRange:startRange];
-    [self.codeEditor insertText:lineContent];
+    
+    //TODO: why are we accessing self.codeEidtor directly? should we pass a string in? mixture of style is not good.
+    NSString *content2insert = @"";
+    NSRange customRange = NSMakeRange(startRange.location, lineContent.length);
+    if (!isNewline([self.codeEditor.string characterAtIndex:startRange.location - 1])) {
+        content2insert = [content2insert stringByAppendingString:@"\n"];
+        customRange.location++;
+    }
+    content2insert = [content2insert stringByAppendingString:lineContent];
+    [self.codeEditor insertText:content2insert];
 //  highlight the newly created line(s)
-    [self.codeEditor setSelectedRange:NSMakeRange(startRange.location, lineContent.length)];
+    [self.codeEditor setSelectedRange:customRange];
 }
 
 -(void)duplicateLine
@@ -185,6 +202,7 @@ static XcodeRefactoringPlus *sharedPlugin;
 {
     if(self.codeEditor)
     {
+        // we need to store this locally because self.currentLineRange will be updated whenever we call setSelectedRange
         NSRange lCurrentLineRange = self.currentLineRange;
         NSString *lineContent = [self.codeEditor.textStorage.string substringWithRange:lCurrentLineRange];
         
@@ -193,10 +211,6 @@ static XcodeRefactoringPlus *sharedPlugin;
         
         [self insertNewLineBelow:NSMakeRange(nextLineRange.location + nextLineRange.length, 0) lineContent:lineContent];
         [self deleteLineInRange:lCurrentLineRange];
-
-        NSRange lineAboveMovedLine = NSMakeRange(nextLineRange.location - lCurrentLineRange.length, nextLineRange.length);
-        nextLineRange = [self getNextLineRange:code forRange:lineAboveMovedLine];
-        [self updateLineRange:nextLineRange AndSelectedString:code];
     }
 }
 
@@ -212,8 +226,6 @@ static XcodeRefactoringPlus *sharedPlugin;
         
         [self deleteLineInRange:lCurrentLineRange];
         [self insertNewLineBelow:NSMakeRange(lineAboveMovedLine.location, 0) lineContent:lineContent];
-        
-        [self updateLineRange:lineAboveMovedLine AndSelectedString:code];
     }
 }
 
@@ -221,8 +233,12 @@ static XcodeRefactoringPlus *sharedPlugin;
 {
     return [code lineRangeForRange:NSMakeRange(range.location + range.length, 0)];
 }
+
 - (NSRange)getPreviouseLineRange:(const NSString *)code forRange:(NSRange)range
 {
+    if (range.location == 0) {
+        return NSMakeRange(range.location, 0);
+    }
     return [code lineRangeForRange:NSMakeRange(range.location - 1, 0)];
 }
 @end
