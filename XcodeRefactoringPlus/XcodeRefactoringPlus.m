@@ -214,6 +214,11 @@ static XcodeRefactoringPlus *sharedPlugin;
 {
     if(self.codeEditor)
     {
+        /**
+         *
+         * DVTSourceTextView *textView = (DVTSourceTextView*)self.codeEditor;
+         * [textView moveCurrentLineDown:[NSValue valueWithRange:_currentRange]];
+         */
         // we need to store this locally because self.currentLineRange will be updated whenever we call setSelectedRange
         NSRange lCurrentLineRange = self.currentLineRange;
         NSString *lineContent = [self.codeEditor.textStorage.string substringWithRange:lCurrentLineRange];

@@ -10,8 +10,6 @@
 		461128A262594A529524A0A0 /* libPods-XcodeRefactoringPlusTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1954A2DD7834494DA54C9886 /* libPods-XcodeRefactoringPlusTests.a */; };
 		8B06BBB618CEAB92004DD905 /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B06BBB418CEAB92004DD905 /* DVTFoundation.framework */; };
 		8B06BBB718CEAB92004DD905 /* DVTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B06BBB518CEAB92004DD905 /* DVTKit.framework */; };
-		8B06BBB818CEABCD004DD905 /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B06BBB418CEAB92004DD905 /* DVTFoundation.framework */; };
-		8B06BBB918CEABD3004DD905 /* DVTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B06BBB518CEAB92004DD905 /* DVTKit.framework */; };
 		8B1EF55218C97D610094D631 /* SimpleText.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8B1EF55118C97D610094D631 /* SimpleText.txt */; };
 		8B5FED0618C738B2001BD004 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5FED0518C738B2001BD004 /* AppKit.framework */; };
 		8B5FED0818C738B2001BD004 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5FED0718C738B2001BD004 /* Foundation.framework */; };
@@ -81,10 +79,8 @@
 			files = (
 				8BA63AC418C83C3700B97466 /* Foundation.framework in Frameworks */,
 				8BA63AC318C83C2B00B97466 /* AppKit.framework in Frameworks */,
-				8B06BBB818CEABCD004DD905 /* DVTFoundation.framework in Frameworks */,
-				8B06BBB918CEABD3004DD905 /* DVTKit.framework in Frameworks */,
-				8BA63AB318C835FE00B97466 /* XCTest.framework in Frameworks */,
 				461128A262594A529524A0A0 /* libPods-XcodeRefactoringPlusTests.a in Frameworks */,
+				8BA63AB318C835FE00B97466 /* XCTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
