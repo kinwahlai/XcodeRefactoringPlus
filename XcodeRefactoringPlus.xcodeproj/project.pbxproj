@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		461128A262594A529524A0A0 /* libPods-XcodeRefactoringPlusTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1954A2DD7834494DA54C9886 /* libPods-XcodeRefactoringPlusTests.a */; };
+		8B06BBB618CEAB92004DD905 /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B06BBB418CEAB92004DD905 /* DVTFoundation.framework */; };
+		8B06BBB718CEAB92004DD905 /* DVTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B06BBB518CEAB92004DD905 /* DVTKit.framework */; };
+		8B06BBB818CEABCD004DD905 /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B06BBB418CEAB92004DD905 /* DVTFoundation.framework */; };
+		8B06BBB918CEABD3004DD905 /* DVTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B06BBB518CEAB92004DD905 /* DVTKit.framework */; };
 		8B1EF55218C97D610094D631 /* SimpleText.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8B1EF55118C97D610094D631 /* SimpleText.txt */; };
 		8B5FED0618C738B2001BD004 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5FED0518C738B2001BD004 /* AppKit.framework */; };
 		8B5FED0818C738B2001BD004 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5FED0718C738B2001BD004 /* Foundation.framework */; };
@@ -34,6 +38,13 @@
 
 /* Begin PBXFileReference section */
 		1954A2DD7834494DA54C9886 /* libPods-XcodeRefactoringPlusTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XcodeRefactoringPlusTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B06BBAD18CEA2B7004DD905 /* DVTFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTFoundation.h; sourceTree = "<group>"; };
+		8B06BBAE18CEA2B7004DD905 /* DVTKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTKit.h; sourceTree = "<group>"; };
+		8B06BBAF18CEA2B7004DD905 /* IDEFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDEFoundation.h; sourceTree = "<group>"; };
+		8B06BBB018CEA2B7004DD905 /* IDEKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDEKit.h; sourceTree = "<group>"; };
+		8B06BBB118CEA2B7004DD905 /* IDESourceEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDESourceEditor.h; sourceTree = "<group>"; };
+		8B06BBB418CEAB92004DD905 /* DVTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTFoundation.framework; path = ../SharedFrameworks/DVTFoundation.framework; sourceTree = DEVELOPER_DIR; };
+		8B06BBB518CEAB92004DD905 /* DVTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTKit.framework; path = ../SharedFrameworks/DVTKit.framework; sourceTree = DEVELOPER_DIR; };
 		8B1EF55118C97D610094D631 /* SimpleText.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SimpleText.txt; sourceTree = "<group>"; };
 		8B5FED0218C738B2001BD004 /* XcodeRefactoringPlus.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XcodeRefactoringPlus.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B5FED0518C738B2001BD004 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -59,6 +70,8 @@
 			files = (
 				8B5FED0618C738B2001BD004 /* AppKit.framework in Frameworks */,
 				8B5FED0818C738B2001BD004 /* Foundation.framework in Frameworks */,
+				8B06BBB618CEAB92004DD905 /* DVTFoundation.framework in Frameworks */,
+				8B06BBB718CEAB92004DD905 /* DVTKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +81,8 @@
 			files = (
 				8BA63AC418C83C3700B97466 /* Foundation.framework in Frameworks */,
 				8BA63AC318C83C2B00B97466 /* AppKit.framework in Frameworks */,
+				8B06BBB818CEABCD004DD905 /* DVTFoundation.framework in Frameworks */,
+				8B06BBB918CEABD3004DD905 /* DVTKit.framework in Frameworks */,
 				8BA63AB318C835FE00B97466 /* XCTest.framework in Frameworks */,
 				461128A262594A529524A0A0 /* libPods-XcodeRefactoringPlusTests.a in Frameworks */,
 			);
@@ -76,6 +91,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8B06BBAB18CEA2B7004DD905 /* XcodeClasses */ = {
+			isa = PBXGroup;
+			children = (
+				8B06BBAC18CEA2B7004DD905 /* Xcode4 */,
+				8B06BBB218CEA2B7004DD905 /* Xcode5 */,
+			);
+			path = XcodeClasses;
+			sourceTree = "<group>";
+		};
+		8B06BBAC18CEA2B7004DD905 /* Xcode4 */ = {
+			isa = PBXGroup;
+			children = (
+				8B06BBAD18CEA2B7004DD905 /* DVTFoundation.h */,
+				8B06BBAE18CEA2B7004DD905 /* DVTKit.h */,
+				8B06BBAF18CEA2B7004DD905 /* IDEFoundation.h */,
+				8B06BBB018CEA2B7004DD905 /* IDEKit.h */,
+				8B06BBB118CEA2B7004DD905 /* IDESourceEditor.h */,
+			);
+			path = Xcode4;
+			sourceTree = "<group>";
+		};
+		8B06BBB218CEA2B7004DD905 /* Xcode5 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Xcode5;
+			sourceTree = "<group>";
+		};
 		8B5FECF918C738B1001BD004 = {
 			isa = PBXGroup;
 			children = (
@@ -99,6 +142,8 @@
 		8B5FED0418C738B2001BD004 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8B06BBB418CEAB92004DD905 /* DVTFoundation.framework */,
+				8B06BBB518CEAB92004DD905 /* DVTKit.framework */,
 				8B5FED0518C738B2001BD004 /* AppKit.framework */,
 				8B5FED0718C738B2001BD004 /* Foundation.framework */,
 				8BA63AB218C835FE00B97466 /* XCTest.framework */,
@@ -110,6 +155,7 @@
 		8B5FED0918C738B2001BD004 /* XcodeRefactoringPlus */ = {
 			isa = PBXGroup;
 			children = (
+				8B06BBAB18CEA2B7004DD905 /* XcodeClasses */,
 				8B5FED0F18C738B2001BD004 /* XcodeRefactoringPlus.h */,
 				8B5FED1018C738B2001BD004 /* XcodeRefactoringPlus.m */,
 				8B5FED0A18C738B2001BD004 /* Supporting Files */,
@@ -395,6 +441,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEPLOYMENT_LOCATION = YES;
 				DSTROOT = "$(HOME)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/SharedFrameworks",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XcodeRefactoringPlus/XcodeRefactoringPlus-Prefix.pch";
 				INFOPLIST_FILE = "XcodeRefactoringPlus/XcodeRefactoringPlus-Info.plist";
@@ -410,6 +460,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEPLOYMENT_LOCATION = YES;
 				DSTROOT = "$(HOME)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/SharedFrameworks",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XcodeRefactoringPlus/XcodeRefactoringPlus-Prefix.pch";
 				INFOPLIST_FILE = "XcodeRefactoringPlus/XcodeRefactoringPlus-Info.plist";
@@ -426,6 +480,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
+					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/SharedFrameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XcodeRefactoringPlusTests/XcodeRefactoringPlusTests-Prefix.pch";
@@ -446,6 +501,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
+					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/SharedFrameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XcodeRefactoringPlusTests/XcodeRefactoringPlusTests-Prefix.pch";
