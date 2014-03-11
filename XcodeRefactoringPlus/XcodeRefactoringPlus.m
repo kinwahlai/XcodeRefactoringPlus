@@ -146,7 +146,7 @@ static XcodeRefactoringPlus *sharedPlugin;
         NSArray *selectedRanges = [self.codeEditor selectedRanges];
         if(selectedRanges.count >= 1)
         {
-            [self updateLineRange:[[selectedRanges objectAtIndex:0] rangeValue] AndSelectedString:self.codeEditor.textStorage.string];
+            [self updateLineRange:[[selectedRanges objectAtIndex:0] rangeValue] AndSelectedString:self.codeEditor.string];
         }
     }
 }
@@ -197,7 +197,7 @@ static XcodeRefactoringPlus *sharedPlugin;
 {
     if(self.codeEditor)
 	{
-		NSString *lineContent = [self.codeEditor.textStorage.string substringWithRange:self.currentLineRange];
+		NSString *lineContent = [self.codeEditor.string substringWithRange:self.currentLineRange];
         [self insertNewLineBelow:NSMakeRange(self.currentLineRange.location + self.currentLineRange.length, 0) lineContent:lineContent];
 	}
 }
@@ -221,9 +221,9 @@ static XcodeRefactoringPlus *sharedPlugin;
          */
         // we need to store this locally because self.currentLineRange will be updated whenever we call setSelectedRange
         NSRange lCurrentLineRange = self.currentLineRange;
-        NSString *lineContent = [self.codeEditor.textStorage.string substringWithRange:lCurrentLineRange];
+        NSString *lineContent = [self.codeEditor.string substringWithRange:lCurrentLineRange];
         
-        NSString *code = self.codeEditor.textStorage.string;
+        NSString *code = self.codeEditor.string;
         NSRange nextLineRange = [self getNextLineRange:code forRange:lCurrentLineRange];
         
         [self insertNewLineBelow:NSMakeRange(nextLineRange.location + nextLineRange.length, 0) lineContent:lineContent];
@@ -236,8 +236,8 @@ static XcodeRefactoringPlus *sharedPlugin;
     if(self.codeEditor)
     {
         NSRange lCurrentLineRange = self.currentLineRange;
-        NSString *lineContent = [self.codeEditor.textStorage.string substringWithRange:lCurrentLineRange];
-        NSString *code = self.codeEditor.textStorage.string;
+        NSString *lineContent = [self.codeEditor.string substringWithRange:lCurrentLineRange];
+        NSString *code = self.codeEditor.string;
     
         NSRange lineAboveMovedLine = [self getPreviouseLineRange:code forRange:lCurrentLineRange];
         
