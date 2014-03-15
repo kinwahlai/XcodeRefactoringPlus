@@ -235,7 +235,7 @@
 		8B5FECFA18C738B1001BD004 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = KinWah;
 				TargetAttributes = {
 					8BA63AB018C835FE00B97466 = {
@@ -473,6 +473,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CCCFD252D4E2410ABA87E5D4 /* Pods-XcodeRefactoringPlusTests.xcconfig */;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
@@ -494,6 +495,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CCCFD252D4E2410ABA87E5D4 /* Pods-XcodeRefactoringPlusTests.xcconfig */;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",

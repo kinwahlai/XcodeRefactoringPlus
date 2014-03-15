@@ -183,7 +183,7 @@ static XcodeRefactoringPlus *sharedPlugin;
     //TODO: why are we accessing self.codeEidtor directly? should we pass a string in? mixture of style is not good.
     NSString *content2insert = @"";
     NSRange customRange = NSMakeRange(startRange.location, lineContent.length);
-    if (!isNewline([self.codeEditor.string characterAtIndex:startRange.location - 1])) {
+    if (startRange.location > 0 && !isNewline([self.codeEditor.string characterAtIndex:startRange.location - 1])) {
         content2insert = [content2insert stringByAppendingString:@"\n"];
         customRange.location++;
     }

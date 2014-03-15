@@ -234,28 +234,26 @@ end";
     expect(splitted[7]).to.equal(@"pod 'Expecta', '~> 0.2.3'");
 }
 
-- (void)testMoveLastLine2NewLineDown
+- (void)testMoveLastLineDownButNoNewLineAdded
 {
-    // TODO: havent implement yet
-    /* Expected result
-     * pod 'OCMock', '~> 2.2.3'
-     * pod 'Expecta', '~> 0.2.3'
-     *
-     *
-     * end
-     */
+    [textView setSelectedRange:NSMakeRange(0, 0)];
+    [myplugin moveLineUp];
+    expect(myplugin.currentLineRange.location).to.equal(0);
+    expect(myplugin.currentLineRange.length).to.equal(67);
+    NSArray *splitted = [textView.string componentsSeparatedByString:@"\n"];
+    expect(splitted).to.haveCountOf(11);
+    expect(splitted[0]).to.equal(@"# Uncomment this line to define a global platform for your project");
 }
 
-- (void)testMoveFirstLine2NewLineUp
+- (void)testMoveFirstLineUpButNoNewLineAdded
 {
-    // TODO: havent implement yet
-    /* Expected result
-     * # Uncomment this line to define a global platform for your project
-     *
-     *
-     * platform :osx, \"10.8\"
-     *
-     * target \"XcodeRefactoringPlus\" do
-     */
+    [textView setSelectedRange:NSMakeRange(218, 0)];
+    [myplugin moveLineDown];
+    expect(myplugin.currentLineRange.location).to.equal(219);
+    expect(myplugin.currentLineRange.length).to.equal(3);
+    NSArray *splitted = [textView.string componentsSeparatedByString:@"\n"];
+    NSLog(@"%@",splitted);
+    expect(splitted).to.haveCountOf(11);
+    expect(splitted[10]).to.equal(@"end");
 }
 @end
