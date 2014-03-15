@@ -28,4 +28,20 @@
     [codeEditor setSelectedRange:range];
     [codeEditor deleteToEndOfLine:nil];
 }
+
+- (void)duplicateLineWithRange:(NSRange)range inTextView:(DVTSourceTextView*)codeEditor
+{
+    NSRange fullLine = [codeEditor.string lineRangeForRange:range];
+    NSString *lineContent = [codeEditor.string substringWithRange:fullLine];
+    [codeEditor setSelectedRange:NSMakeRange(fullLine.location + fullLine.length, 0)];
+    [codeEditor insertText:lineContent];
+}
+
+- (void) showMessageBox:(NSString *)text
+{
+    NSAlert *alert = [[NSAlert alloc] init];
+    
+    [alert setMessageText:text];
+    [alert runModal];
+}
 @end

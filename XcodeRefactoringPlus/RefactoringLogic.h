@@ -24,4 +24,5 @@
 
 @interface RefactoringLogic : NSObject
 - (void)deleteLineWithRange:(NSRange)range inTextView:(DVTSourceTextView*)codeEditor;
+- (void)duplicateLineWithRange:(NSRange)range inTextView:(DVTSourceTextView*)codeEditor;
 @end
