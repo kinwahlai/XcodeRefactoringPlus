@@ -24,10 +24,7 @@
 
 #define EXP_SHORTHAND
 #import <Expecta.h>
-
 #import <Swizzlean/Swizzlean.h>
-
-@class DVTSourceTextView;
 
 @interface XcodeRefactoringPlus (UnderTest)
 -(void)deleteLine;
@@ -61,7 +58,6 @@ target \"XcodeRefactoringPlusTests\" do\n\
 pod 'OCMock', '~> 2.2.3'\n\
 pod 'Expecta', '~> 0.2.3'\n\
 end";
-    
     myplugin = [[XcodeRefactoringPlus alloc] init];
     textView = [[NSTextView alloc] init];
     [textView setString:multilines];

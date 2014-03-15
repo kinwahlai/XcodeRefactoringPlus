@@ -22,6 +22,17 @@
 		8BA63AC318C83C2B00B97466 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5FED0518C738B2001BD004 /* AppKit.framework */; };
 		8BA63AC418C83C3700B97466 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5FED0718C738B2001BD004 /* Foundation.framework */; };
 		8BB95BD118C98C0C00914FB4 /* SimpleText.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8B1EF55118C97D610094D631 /* SimpleText.txt */; };
+		8BFD8B6618D4B881002CD274 /* DVTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B06BBB518CEAB92004DD905 /* DVTKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		8BFD8B6718D4B885002CD274 /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B06BBB418CEAB92004DD905 /* DVTFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		8BFD8B6918D4B8AB002CD274 /* DVTFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B06BBAD18CEA2B7004DD905 /* DVTFoundation.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		8BFD8B6A18D4B8AB002CD274 /* DVTKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B06BBAE18CEA2B7004DD905 /* DVTKit.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		8BFD8B6B18D4B8AB002CD274 /* IDEFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B06BBAF18CEA2B7004DD905 /* IDEFoundation.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		8BFD8B6C18D4B8AB002CD274 /* IDEKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B06BBB018CEA2B7004DD905 /* IDEKit.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		8BFD8B6D18D4B8AB002CD274 /* IDESourceEditor.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B06BBB118CEA2B7004DD905 /* IDESourceEditor.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		8BFD8B7018D4B944002CD274 /* RefactoringLogic.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFD8B6E18D4B944002CD274 /* RefactoringLogic.h */; };
+		8BFD8B7118D4B944002CD274 /* RefactoringLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFD8B6F18D4B944002CD274 /* RefactoringLogic.m */; };
+		8BFD8B7218D4B944002CD274 /* RefactoringLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFD8B6F18D4B944002CD274 /* RefactoringLogic.m */; };
+		8BFD8B7418D4B94F002CD274 /* RefactoringLogicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFD8B7318D4B94F002CD274 /* RefactoringLogicTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +69,9 @@
 		8BA63AB818C835FE00B97466 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8BA63ABA18C835FE00B97466 /* XcodeRefactoringPlusTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XcodeRefactoringPlusTests.m; sourceTree = "<group>"; };
 		8BA63ABC18C835FE00B97466 /* XcodeRefactoringPlusTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XcodeRefactoringPlusTests-Prefix.pch"; sourceTree = "<group>"; };
+		8BFD8B6E18D4B944002CD274 /* RefactoringLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefactoringLogic.h; sourceTree = "<group>"; };
+		8BFD8B6F18D4B944002CD274 /* RefactoringLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefactoringLogic.m; sourceTree = "<group>"; };
+		8BFD8B7318D4B94F002CD274 /* RefactoringLogicTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefactoringLogicTests.m; sourceTree = "<group>"; };
 		CCCFD252D4E2410ABA87E5D4 /* Pods-XcodeRefactoringPlusTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XcodeRefactoringPlusTests.xcconfig"; path = "Pods/Pods-XcodeRefactoringPlusTests.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,6 +95,8 @@
 				8BA63AC318C83C2B00B97466 /* AppKit.framework in Frameworks */,
 				461128A262594A529524A0A0 /* libPods-XcodeRefactoringPlusTests.a in Frameworks */,
 				8BA63AB318C835FE00B97466 /* XCTest.framework in Frameworks */,
+				8BFD8B6618D4B881002CD274 /* DVTKit.framework in Frameworks */,
+				8BFD8B6718D4B885002CD274 /* DVTFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,6 +167,8 @@
 		8B5FED0918C738B2001BD004 /* XcodeRefactoringPlus */ = {
 			isa = PBXGroup;
 			children = (
+				8BFD8B6E18D4B944002CD274 /* RefactoringLogic.h */,
+				8BFD8B6F18D4B944002CD274 /* RefactoringLogic.m */,
 				8B06BBAB18CEA2B7004DD905 /* XcodeClasses */,
 				8B5FED0F18C738B2001BD004 /* XcodeRefactoringPlus.h */,
 				8B5FED1018C738B2001BD004 /* XcodeRefactoringPlus.m */,
@@ -173,6 +191,7 @@
 		8BA63AB418C835FE00B97466 /* XcodeRefactoringPlusTests */ = {
 			isa = PBXGroup;
 			children = (
+				8BFD8B7318D4B94F002CD274 /* RefactoringLogicTests.m */,
 				8BA63ABA18C835FE00B97466 /* XcodeRefactoringPlusTests.m */,
 				8BA63AB518C835FE00B97466 /* Supporting Files */,
 			);
@@ -190,6 +209,22 @@
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		8BFD8B6818D4B8A0002CD274 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8BFD8B6918D4B8AB002CD274 /* DVTFoundation.h in Headers */,
+				8BFD8B6A18D4B8AB002CD274 /* DVTKit.h in Headers */,
+				8BFD8B6B18D4B8AB002CD274 /* IDEFoundation.h in Headers */,
+				8BFD8B6C18D4B8AB002CD274 /* IDEKit.h in Headers */,
+				8BFD8B7018D4B944002CD274 /* RefactoringLogic.h in Headers */,
+				8BFD8B6D18D4B8AB002CD274 /* IDESourceEditor.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		8B5FED0118C738B1001BD004 /* XcodeRefactoringPlus */ = {
@@ -214,6 +249,7 @@
 			buildConfigurationList = 8BA63AC118C835FE00B97466 /* Build configuration list for PBXNativeTarget "XcodeRefactoringPlusTests" */;
 			buildPhases = (
 				DA43B07E128B49EFBF1CB178 /* Check Pods Manifest.lock */,
+				8BFD8B6818D4B8A0002CD274 /* Headers */,
 				8BA63AAD18C835FE00B97466 /* Sources */,
 				8BA63AAE18C835FE00B97466 /* Frameworks */,
 				8BA63AAF18C835FE00B97466 /* Resources */,
@@ -321,6 +357,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B5FED1118C738B2001BD004 /* XcodeRefactoringPlus.m in Sources */,
+				8BFD8B7118D4B944002CD274 /* RefactoringLogic.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,6 +367,8 @@
 			files = (
 				8BA63AC218C83BF500B97466 /* XcodeRefactoringPlus.m in Sources */,
 				8BA63ABB18C835FE00B97466 /* XcodeRefactoringPlusTests.m in Sources */,
+				8BFD8B7218D4B944002CD274 /* RefactoringLogic.m in Sources */,
+				8BFD8B7418D4B94F002CD274 /* RefactoringLogicTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
