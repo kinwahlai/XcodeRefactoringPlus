@@ -35,6 +35,19 @@
     NSString *lineContent = [codeEditor.string substringWithRange:fullLine];
     [codeEditor setSelectedRange:NSMakeRange(fullLine.location + fullLine.length, 0)];
     [codeEditor insertText:lineContent];
+    [codeEditor setSelectedRange:NSMakeRange(fullLine.location + fullLine.length, fullLine.length)];
+}
+
+- (void)moveDownLineWithRange:(NSRange)range inTextView:(DVTSourceTextView*)codeEditor
+{
+    [codeEditor setSelectedRange:range];
+    [codeEditor moveCurrentLineDown:nil];
+}
+
+- (void)moveUpLineWithRange:(NSRange)range inTextView:(DVTSourceTextView*)codeEditor
+{
+    [codeEditor setSelectedRange:range];
+    [codeEditor moveCurrentLineUp:nil];
 }
 
 - (void) showMessageBox:(NSString *)text

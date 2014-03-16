@@ -20,19 +20,17 @@
 
 #import <XCTest/XCTest.h>
 #import <OCMock.h>
-#define MOCKITO_SHORTHAND
-#import <OCMockito/OCMockito.h>
-#define HC_SHORTHAND
-#import <OCHamcrest/OCHamcrest.h>
 #define EXP_SHORTHAND
 #import <Expecta.h>
 #import "RefactoringLogic.h"
 #import "DVTKit.h"
 
-// this is to make the mock work
+//// this is to make the mock work, doesnt make any sense though.
 @protocol DVTSourceTextViewProtocol <NSObject>
 -(void)setSelectedRange:(NSRange)range;
 -(void)deleteToEndOfLine:(id)sender;
+-(void)moveCurrentLineDown:(id)sender;
+-(void)moveCurrentLineUp:(id)sender;
 -(NSString*)string;
 -(void)insertText:(NSString*)value;
 @end
@@ -63,6 +61,7 @@ target \"XcodeRefactoringPlusTests\" do\n\
 pod 'OCMock', '~> 2.2.3'\n\
 pod 'Expecta', '~> 0.2.3'\n\
 end";
+    [[[dvtTextView stub] andReturn:multilines] string];
 }
 
 - (void)tearDown
@@ -78,11 +77,28 @@ end";
     [dvtTextView verify];
 }
 
-- (void)testDuplicateSelectedLine {
-    [[[dvtTextView stub] andReturn:multilines] string];
+- (void)testDuplicateSelectedLine
+{
     [[dvtTextView stub] setSelectedRange:NSMakeRange(67, 0)];
+    [[dvtTextView stub] setSelectedRange:NSMakeRange(67, 67)]; // to highlight the duplicated line
     [[dvtTextView expect] insertText:OCMOCK_ANY];
     [rlogic duplicateLineWithRange:NSMakeRange(0, 0) inTextView:dvtTextView];
+    [dvtTextView verify];
+}
+
+- (void)testMoveSelectedLineDown
+{
+    [[dvtTextView stub] setSelectedRange:NSMakeRange(67, 0)];
+    [[dvtTextView expect] moveCurrentLineDown:[OCMArg isNil]];
+    [rlogic moveDownLineWithRange:NSMakeRange(67, 0) inTextView:dvtTextView];
+    [dvtTextView verify];
+}
+
+- (void)testMoveSelectedLineUp
+{
+    [[dvtTextView stub] setSelectedRange:NSMakeRange(67, 0)];
+    [[dvtTextView expect] moveCurrentLineUp:[OCMArg isNil]];
+    [rlogic moveUpLineWithRange:NSMakeRange(67, 0) inTextView:dvtTextView];
     [dvtTextView verify];
 }
 @end
