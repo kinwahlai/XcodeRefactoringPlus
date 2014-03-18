@@ -43,12 +43,14 @@
 {
     [codeEditor setSelectedRange:range];
     [codeEditor moveCurrentLineDown:nil];
+    [codeEditor setSelectedRange:[codeEditor.string lineRangeForRange:codeEditor.selectedRange]];
 }
 
 - (void)moveUpLineWithRange:(NSRange)range inTextView:(DVTSourceTextView*)codeEditor
 {
     [codeEditor setSelectedRange:range];
     [codeEditor moveCurrentLineUp:nil];
+    [codeEditor setSelectedRange:[codeEditor.string lineRangeForRange:codeEditor.selectedRange]];
 }
 
 - (void) showMessageBox:(NSString *)text

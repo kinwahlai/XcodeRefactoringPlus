@@ -104,17 +104,21 @@ end";
 
 - (void)testMoveSelectedLineDown
 {
-    [[dvtTextView stub] setSelectedRange:NSMakeRange(67, 0)];
+    [[dvtTextView stub] setSelectedRange:NSMakeRange(0, 0)];
     [[dvtTextView expect] moveCurrentLineDown:[OCMArg isNil]];
-    [rlogic moveDownLineWithRange:NSMakeRange(67, 0) inTextView:dvtTextView];
+    [[[dvtTextView stub] andReturnValue:[NSValue valueWithRange:NSMakeRange(22, 0)]] selectedRange];
+    [[dvtTextView stub] setSelectedRange:NSMakeRange(0, 67)];
+    [rlogic moveDownLineWithRange:NSMakeRange(0, 0) inTextView:dvtTextView];
     [dvtTextView verify];
 }
 
 - (void)testMoveSelectedLineUp
 {
-    [[dvtTextView stub] setSelectedRange:NSMakeRange(67, 0)];
+    [[dvtTextView stub] setSelectedRange:NSMakeRange(0, 0)];
     [[dvtTextView expect] moveCurrentLineUp:[OCMArg isNil]];
-    [rlogic moveUpLineWithRange:NSMakeRange(67, 0) inTextView:dvtTextView];
+    [[[dvtTextView stub] andReturnValue:[NSValue valueWithRange:NSMakeRange(22, 0)]] selectedRange];
+    [[dvtTextView stub] setSelectedRange:NSMakeRange(0, 67)];
+    [rlogic moveUpLineWithRange:NSMakeRange(0, 0) inTextView:dvtTextView];
     [dvtTextView verify];
 }
 @end
