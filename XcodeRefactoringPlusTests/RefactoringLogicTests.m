@@ -87,7 +87,7 @@ end";
 
 - (void)testDeleteSelectedLine
 {
-    [[dvtTextView stub] setSelectedRange:NSMakeRange(0, 0)];
+    [[dvtTextView stub] setSelectedRange:NSMakeRange(0, 67)];
     [[dvtTextView expect] deleteToEndOfLine:nil];
     [rlogic deleteLineWithRange:NSMakeRange(0, 0) inTextView:dvtTextView];
     [dvtTextView verify];

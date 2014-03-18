@@ -25,7 +25,8 @@
 @implementation RefactoringLogic
 - (void)deleteLineWithRange:(NSRange)range inTextView:(DVTSourceTextView*)codeEditor
 {
-    [codeEditor setSelectedRange:range];
+    NSRange fullLine = [codeEditor.string lineRangeForRange:range];
+    [codeEditor setSelectedRange:fullLine];
     [codeEditor deleteToEndOfLine:nil];
 }
 

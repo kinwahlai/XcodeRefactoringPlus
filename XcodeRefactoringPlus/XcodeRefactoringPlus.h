@@ -20,8 +20,8 @@
 
 #import <AppKit/AppKit.h>
 
+@class RefactoringLogic;
+
 @interface XcodeRefactoringPlus : NSObject
-@property (readonly) NSRange currentLineRange;
-@property (readonly) NSString *currentSelectedString;
-@property (readonly) NSTextView *codeEditor;
+- (instancetype)initWithLogic:(RefactoringLogic*)refactoringLogic;
 @end

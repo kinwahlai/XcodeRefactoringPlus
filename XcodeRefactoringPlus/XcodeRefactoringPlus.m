@@ -19,24 +19,19 @@
 // THE SOFTWARE.
 
 #import "XcodeRefactoringPlus.h"
-
-BOOL isNewline(unichar ch) { return (ch >= 0xA && ch <= 0xD) || ch == 0x85; } // What's the defference with [NSCharacterSet newlineCharacterSet] characterIsMember:] ?
-
+#import "RefactoringLogic.h"
+#import "DVTKit.h"
 
 static XcodeRefactoringPlus *sharedPlugin;
 
 @interface XcodeRefactoringPlus()
 {
-    NSRange _currentRange;
-    NSRange _currentLineRange;
-    NSString *_currentSelectedString;
-    NSTextView *_codeEditor;
+    RefactoringLogic *logic;
 }
 @property (nonatomic, strong) NSBundle *bundle;
 @end
 
 @implementation XcodeRefactoringPlus
-@synthesize currentLineRange = _currentLineRange, currentSelectedString = _currentSelectedString,codeEditor = _codeEditor;
 + (void)pluginDidLoad:(NSBundle *)plugin
 {
     static id sharedPlugin = nil;
@@ -51,10 +46,19 @@ static XcodeRefactoringPlus *sharedPlugin;
 
 - (id)initWithBundle:(NSBundle *)plugin
 {
-    if (self = [super init]) {
+    if (self = [self initWithLogic:[[RefactoringLogic alloc] init]]) {
         // reference to plugin's bundle, for resource acccess
         self.bundle = plugin;
         [self setupSubMenu:[[[[NSApp mainMenu] itemWithTitle:@"Edit"] submenu] itemWithTitle:@"Refactor"]];
+    }
+    return self;
+}
+
+- (instancetype)initWithLogic:(RefactoringLogic*)refactoringLogic
+{
+    self = [super init];
+    if (self) {
+        logic = refactoringLogic;
     }
     return self;
 }
@@ -86,21 +90,6 @@ static XcodeRefactoringPlus *sharedPlugin;
         [moveLineDownMenuItem setTarget:self];
         [moveLineDownMenuItem setKeyEquivalentModifierMask:(NSAlternateKeyMask)];
         [[menuItem submenu] addItem:moveLineDownMenuItem];
-        
-        // tap into notifications
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectionDidChange:) name:NSTextViewDidChangeSelectionNotification object:nil];
-        
-        if(!self.codeEditor){
-            NSResponder *firstResponder = [[NSApp keyWindow] firstResponder];
-            if([firstResponder isKindOfClass:NSClassFromString(@"DVTSourceTextView")] && [firstResponder isKindOfClass:[NSTextView class]]){
-                _codeEditor = (NSTextView *)firstResponder;
-            }
-        }
-        
-        if(self.codeEditor){
-            NSNotification *notification = [NSNotification notificationWithName:NSTextViewDidChangeSelectionNotification object:self.codeEditor];
-            [self selectionDidChange:notification];
-        }
     }
 }
 
@@ -135,71 +124,51 @@ static XcodeRefactoringPlus *sharedPlugin;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
--(void)selectionDidChange:(NSNotification *)notification
+- (NSResponder *)getFirstResponder
 {
-    /**
-     *  DVTSourceTextView cannot be instantiate now thus cannot be test, so we dont check in the if statement
-     */
-    if([[notification object] isKindOfClass:[NSTextView class]])
-    {
-		_codeEditor = (NSTextView *)[notification object];
-        NSArray *selectedRanges = [self.codeEditor selectedRanges];
-        if(selectedRanges.count >= 1)
-        {
-            [self updateLineRange:[[selectedRanges objectAtIndex:0] rangeValue] AndSelectedString:self.codeEditor.string];
-        }
-    }
-}
-
--(void)updateLineRange:(NSRange)range AndSelectedString:(const NSString *)code
-{
-    _currentRange     = range;
-    _currentLineRange = [code lineRangeForRange:range];
-    _currentSelectedString = [code substringWithRange:self.currentLineRange];
-}
-
-- (void)deleteLineInRange:(NSRange)range
-{
-    @try {
-        [self.codeEditor insertText:@"" replacementRange:NSMakeRange(range.location-1, range.length)];
-    }
-    @catch (NSException *exception) {
-        [self.codeEditor insertText:@"" replacementRange:NSMakeRange(range.location, range.length)];
-    }
+    NSResponder *firstResponder = [[NSApp keyWindow] firstResponder];
+    return firstResponder;
 }
 
 -(void)deleteLine
 {
-    if(self.codeEditor)
-	{
-		[self deleteLineInRange:self.currentLineRange];
-	}
+    NSResponder *firstResponder;
+    firstResponder = [self getFirstResponder];
+    if (([firstResponder isKindOfClass:NSClassFromString(@"DVTSourceTextView")] && [firstResponder isKindOfClass:[NSTextView class]])) {
+        DVTSourceTextView *dvtSourceTextView = (DVTSourceTextView*) firstResponder;
+        [logic deleteLineWithRange:dvtSourceTextView.selectedRange inTextView:dvtSourceTextView];
+    }
 }
 
-- (void)insertNewLineBelow:(NSRange)startRange lineContent:(NSString *)lineContent
-{
-    [self.codeEditor setSelectedRange:startRange];
-    
-    //TODO: why are we accessing self.codeEidtor directly? should we pass a string in? mixture of style is not good.
-    NSString *content2insert = @"";
-    NSRange customRange = NSMakeRange(startRange.location, lineContent.length);
-    if (startRange.location > 0 && !isNewline([self.codeEditor.string characterAtIndex:startRange.location - 1])) {
-        content2insert = [content2insert stringByAppendingString:@"\n"];
-        customRange.location++;
-    }
-    content2insert = [content2insert stringByAppendingString:lineContent];
-    [self.codeEditor insertText:content2insert];
-//  highlight the newly created line(s)
-    [self.codeEditor setSelectedRange:customRange];
-}
 
 -(void)duplicateLine
 {
-    if(self.codeEditor)
-	{
-		NSString *lineContent = [self.codeEditor.string substringWithRange:self.currentLineRange];
-        [self insertNewLineBelow:NSMakeRange(self.currentLineRange.location + self.currentLineRange.length, 0) lineContent:lineContent];
-	}
+    NSResponder *firstResponder;
+    firstResponder = [self getFirstResponder];
+    if (([firstResponder isKindOfClass:NSClassFromString(@"DVTSourceTextView")] && [firstResponder isKindOfClass:[NSTextView class]])) {
+        DVTSourceTextView *dvtSourceTextView = (DVTSourceTextView*) firstResponder;
+        [logic duplicateLineWithRange:dvtSourceTextView.selectedRange inTextView:dvtSourceTextView];
+    }
+}
+
+-(void)moveLineDown
+{
+    NSResponder *firstResponder;
+    firstResponder = [self getFirstResponder];
+    if (([firstResponder isKindOfClass:NSClassFromString(@"DVTSourceTextView")] && [firstResponder isKindOfClass:[NSTextView class]])) {
+        DVTSourceTextView *dvtSourceTextView = (DVTSourceTextView*) firstResponder;
+        [logic moveDownLineWithRange:dvtSourceTextView.selectedRange inTextView:dvtSourceTextView];
+    }
+}
+
+-(void)moveLineUp
+{
+    NSResponder *firstResponder;
+    firstResponder = [self getFirstResponder];
+    if (([firstResponder isKindOfClass:NSClassFromString(@"DVTSourceTextView")] && [firstResponder isKindOfClass:[NSTextView class]])) {
+        DVTSourceTextView *dvtSourceTextView = (DVTSourceTextView*) firstResponder;
+        [logic moveUpLineWithRange:dvtSourceTextView.selectedRange inTextView:dvtSourceTextView];
+    }
 }
 
 - (void) showMessageBox:(NSString *)text
@@ -210,52 +179,4 @@ static XcodeRefactoringPlus *sharedPlugin;
     [alert runModal];
 }
 
--(void)moveLineDown
-{
-    if(self.codeEditor)
-    {
-        /**
-         *
-         * DVTSourceTextView *textView = (DVTSourceTextView*)self.codeEditor;
-         * [textView moveCurrentLineDown:[NSValue valueWithRange:_currentRange]];
-         */
-        // we need to store this locally because self.currentLineRange will be updated whenever we call setSelectedRange
-        NSRange lCurrentLineRange = self.currentLineRange;
-        NSString *lineContent = [self.codeEditor.string substringWithRange:lCurrentLineRange];
-        
-        NSString *code = self.codeEditor.string;
-        NSRange nextLineRange = [self getNextLineRange:code forRange:lCurrentLineRange];
-        
-        [self insertNewLineBelow:NSMakeRange(nextLineRange.location + nextLineRange.length, 0) lineContent:lineContent];
-        [self deleteLineInRange:lCurrentLineRange];
-    }
-}
-
--(void)moveLineUp
-{
-    if(self.codeEditor)
-    {
-        NSRange lCurrentLineRange = self.currentLineRange;
-        NSString *lineContent = [self.codeEditor.string substringWithRange:lCurrentLineRange];
-        NSString *code = self.codeEditor.string;
-    
-        NSRange lineAboveMovedLine = [self getPreviouseLineRange:code forRange:lCurrentLineRange];
-        
-        [self deleteLineInRange:lCurrentLineRange];
-        [self insertNewLineBelow:NSMakeRange(lineAboveMovedLine.location, 0) lineContent:lineContent];
-    }
-}
-
-- (NSRange)getNextLineRange:(const NSString *)code forRange:(NSRange)range
-{
-    return [code lineRangeForRange:NSMakeRange(range.location + range.length, 0)];
-}
-
-- (NSRange)getPreviouseLineRange:(const NSString *)code forRange:(NSRange)range
-{
-    if (range.location == 0) {
-        return NSMakeRange(range.location, 0);
-    }
-    return [code lineRangeForRange:NSMakeRange(range.location - 1, 0)];
-}
 @end
