@@ -18,6 +18,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#import <dlfcn.h>
+
 #import <XCTest/XCTest.h>
 #import <OCMock.h>
 #define EXP_SHORTHAND
@@ -25,30 +27,44 @@
 #import "RefactoringLogic.h"
 #import "DVTKit.h"
 
-//// this is to make the mock work, doesnt make any sense though.
-@protocol DVTSourceTextViewProtocol <NSObject>
--(void)setSelectedRange:(NSRange)range;
--(void)deleteToEndOfLine:(id)sender;
--(void)moveCurrentLineDown:(id)sender;
--(void)moveCurrentLineUp:(id)sender;
--(NSString*)string;
--(void)insertText:(NSString*)value;
-@end
-
 @interface RefactoringLogicTests : XCTestCase
 {
     id dvtTextView;
     RefactoringLogic *rlogic;
     NSString *multilines;
+    Class dvtSourceTextViewClass;
+    Class dvtSourceTextStorageClass;
 }
 @end
 
 @implementation RefactoringLogicTests
 
+// This loading the framework and get the class is to allow us to mock the class
+- (void)loadDVTFrameworkAndClass
+{
+    /**
+     * Another way of loading the private framework
+     * NSBundle *dvtF = [NSBundle bundleWithPath:@"/Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework"];
+     * [dvtF load];
+     * NSBundle *dvt = [NSBundle bundleWithPath:@"/Applications/Xcode.app/Contents/SharedFrameworks/DVTKit.framework"];
+     * [dvt load];
+     **/
+    
+    void* handleDVTFoundation = dlopen("/Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework/Versions/Current/DVTFoundation", RTLD_NOW);
+    void* handleDVTKit = dlopen("/Applications/Xcode.app/Contents/SharedFrameworks/DVTKit.framework/Versions/Current/DVTKit", RTLD_NOW);
+    dvtSourceTextViewClass = NSClassFromString(@"DVTSourceTextView");
+    dvtSourceTextStorageClass = NSClassFromString(@"DVTSourceTextStorage");
+    dlclose(handleDVTFoundation);
+    dlclose(handleDVTKit);
+}
+
 - (void)setUp
 {
     [super setUp];
-    dvtTextView = [OCMockObject mockForProtocol:@protocol(DVTSourceTextViewProtocol)];
+    
+    [self loadDVTFrameworkAndClass];
+    
+    dvtTextView = [OCMockObject mockForClass:dvtSourceTextViewClass];
     rlogic = [[RefactoringLogic alloc] init];
     multilines = @"# Uncomment this line to define a global platform for your project\n\
 platform :osx, \"10.8\"\n\
