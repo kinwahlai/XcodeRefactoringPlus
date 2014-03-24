@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		23F842ABD3EC4D2A9F47A742 /* libPods-XcodeRefactoringPlus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68419A8320BF436991C55061 /* libPods-XcodeRefactoringPlus.a */; };
 		461128A262594A529524A0A0 /* libPods-XcodeRefactoringPlusTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1954A2DD7834494DA54C9886 /* libPods-XcodeRefactoringPlusTests.a */; };
 		8B06BBB618CEAB92004DD905 /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B06BBB418CEAB92004DD905 /* DVTFoundation.framework */; };
 		8B06BBB718CEAB92004DD905 /* DVTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B06BBB518CEAB92004DD905 /* DVTKit.framework */; };
@@ -24,14 +23,6 @@
 		8BA63AC318C83C2B00B97466 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5FED0518C738B2001BD004 /* AppKit.framework */; };
 		8BA63AC418C83C3700B97466 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5FED0718C738B2001BD004 /* Foundation.framework */; };
 		8BB95BD118C98C0C00914FB4 /* SimpleText.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8B1EF55118C97D610094D631 /* SimpleText.txt */; };
-		8BC0E20E18DF4B1100B54BF4 /* ObjCFuncOrMethod.grammar in Resources */ = {isa = PBXBuildFile; fileRef = 8BC0E20918DF4B1100B54BF4 /* ObjCFuncOrMethod.grammar */; };
-		8BC0E20F18DF4B1100B54BF4 /* ObjCFuncOrMethod.grammar in Resources */ = {isa = PBXBuildFile; fileRef = 8BC0E20918DF4B1100B54BF4 /* ObjCFuncOrMethod.grammar */; };
-		8BC0E21018DF4B1100B54BF4 /* ObjCFuncOrMethodAssembler.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BC0E20A18DF4B1100B54BF4 /* ObjCFuncOrMethodAssembler.h */; };
-		8BC0E21118DF4B1100B54BF4 /* ObjCFuncOrMethodAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC0E20B18DF4B1100B54BF4 /* ObjCFuncOrMethodAssembler.m */; };
-		8BC0E21218DF4B1100B54BF4 /* ObjCFuncOrMethodAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC0E20B18DF4B1100B54BF4 /* ObjCFuncOrMethodAssembler.m */; };
-		8BC0E21318DF4B1100B54BF4 /* ObjCFuncOrMethodParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BC0E20C18DF4B1100B54BF4 /* ObjCFuncOrMethodParser.h */; };
-		8BC0E21418DF4B1100B54BF4 /* ObjCFuncOrMethodParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC0E20D18DF4B1100B54BF4 /* ObjCFuncOrMethodParser.m */; };
-		8BC0E21518DF4B1100B54BF4 /* ObjCFuncOrMethodParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC0E20D18DF4B1100B54BF4 /* ObjCFuncOrMethodParser.m */; };
 		8BDDE93718D8A29C0077E455 /* TestClass.text in Resources */ = {isa = PBXBuildFile; fileRef = 8BDDE93618D8A29C0077E455 /* TestClass.text */; };
 		8BFD8B6618D4B881002CD274 /* DVTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B06BBB518CEAB92004DD905 /* DVTKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		8BFD8B6718D4B885002CD274 /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B06BBB418CEAB92004DD905 /* DVTFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -58,7 +49,6 @@
 
 /* Begin PBXFileReference section */
 		1954A2DD7834494DA54C9886 /* libPods-XcodeRefactoringPlusTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XcodeRefactoringPlusTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		43595041BFE84450B938C817 /* Pods-XcodeRefactoringPlus.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XcodeRefactoringPlus.xcconfig"; path = "Pods/Pods-XcodeRefactoringPlus.xcconfig"; sourceTree = "<group>"; };
 		68419A8320BF436991C55061 /* libPods-XcodeRefactoringPlus.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XcodeRefactoringPlus.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B06BBAD18CEA2B7004DD905 /* DVTFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTFoundation.h; sourceTree = "<group>"; };
 		8B06BBAE18CEA2B7004DD905 /* DVTKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTKit.h; sourceTree = "<group>"; };
@@ -83,11 +73,6 @@
 		8BA63AB818C835FE00B97466 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8BA63ABA18C835FE00B97466 /* XcodeRefactoringPlusTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XcodeRefactoringPlusTests.m; sourceTree = "<group>"; };
 		8BA63ABC18C835FE00B97466 /* XcodeRefactoringPlusTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XcodeRefactoringPlusTests-Prefix.pch"; sourceTree = "<group>"; };
-		8BC0E20918DF4B1100B54BF4 /* ObjCFuncOrMethod.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ObjCFuncOrMethod.grammar; sourceTree = "<group>"; };
-		8BC0E20A18DF4B1100B54BF4 /* ObjCFuncOrMethodAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjCFuncOrMethodAssembler.h; sourceTree = "<group>"; };
-		8BC0E20B18DF4B1100B54BF4 /* ObjCFuncOrMethodAssembler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjCFuncOrMethodAssembler.m; sourceTree = "<group>"; };
-		8BC0E20C18DF4B1100B54BF4 /* ObjCFuncOrMethodParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjCFuncOrMethodParser.h; sourceTree = "<group>"; };
-		8BC0E20D18DF4B1100B54BF4 /* ObjCFuncOrMethodParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjCFuncOrMethodParser.m; sourceTree = "<group>"; };
 		8BDDE93618D8A29C0077E455 /* TestClass.text */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TestClass.text; sourceTree = "<group>"; };
 		8BFD8B6E18D4B944002CD274 /* RefactoringLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefactoringLogic.h; sourceTree = "<group>"; };
 		8BFD8B6F18D4B944002CD274 /* RefactoringLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefactoringLogic.m; sourceTree = "<group>"; };
@@ -104,7 +89,6 @@
 				8B5FED0818C738B2001BD004 /* Foundation.framework in Frameworks */,
 				8B06BBB618CEAB92004DD905 /* DVTFoundation.framework in Frameworks */,
 				8B06BBB718CEAB92004DD905 /* DVTKit.framework in Frameworks */,
-				23F842ABD3EC4D2A9F47A742 /* libPods-XcodeRefactoringPlus.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,7 +144,6 @@
 				8B5FED0418C738B2001BD004 /* Frameworks */,
 				8B5FED0318C738B2001BD004 /* Products */,
 				CCCFD252D4E2410ABA87E5D4 /* Pods-XcodeRefactoringPlusTests.xcconfig */,
-				43595041BFE84450B938C817 /* Pods-XcodeRefactoringPlus.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -190,7 +173,6 @@
 		8B5FED0918C738B2001BD004 /* XcodeRefactoringPlus */ = {
 			isa = PBXGroup;
 			children = (
-				8BC0E20818DF4B1100B54BF4 /* ParseKit Code */,
 				8BFD8B6E18D4B944002CD274 /* RefactoringLogic.h */,
 				8BFD8B6F18D4B944002CD274 /* RefactoringLogic.m */,
 				8B06BBAB18CEA2B7004DD905 /* XcodeClasses */,
@@ -234,18 +216,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		8BC0E20818DF4B1100B54BF4 /* ParseKit Code */ = {
-			isa = PBXGroup;
-			children = (
-				8BC0E20918DF4B1100B54BF4 /* ObjCFuncOrMethod.grammar */,
-				8BC0E20A18DF4B1100B54BF4 /* ObjCFuncOrMethodAssembler.h */,
-				8BC0E20B18DF4B1100B54BF4 /* ObjCFuncOrMethodAssembler.m */,
-				8BC0E20C18DF4B1100B54BF4 /* ObjCFuncOrMethodParser.h */,
-				8BC0E20D18DF4B1100B54BF4 /* ObjCFuncOrMethodParser.m */,
-			);
-			path = "ParseKit Code";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -257,10 +227,8 @@
 				8BFD8B6A18D4B8AB002CD274 /* DVTKit.h in Headers */,
 				8BFD8B6B18D4B8AB002CD274 /* IDEFoundation.h in Headers */,
 				8BFD8B6C18D4B8AB002CD274 /* IDEKit.h in Headers */,
-				8BC0E21018DF4B1100B54BF4 /* ObjCFuncOrMethodAssembler.h in Headers */,
 				8BFD8B7018D4B944002CD274 /* RefactoringLogic.h in Headers */,
 				8BFD8B6D18D4B8AB002CD274 /* IDESourceEditor.h in Headers */,
-				8BC0E21318DF4B1100B54BF4 /* ObjCFuncOrMethodParser.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,11 +239,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8B5FED1518C738B2001BD004 /* Build configuration list for PBXNativeTarget "XcodeRefactoringPlus" */;
 			buildPhases = (
-				52AB7A4C294B4991B8774211 /* Check Pods Manifest.lock */,
 				8B5FECFE18C738B1001BD004 /* Sources */,
 				8B5FECFF18C738B1001BD004 /* Frameworks */,
 				8B5FED0018C738B1001BD004 /* Resources */,
-				B52BB6A6BE8F4341A5F50339 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -345,7 +311,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B5FED0E18C738B2001BD004 /* InfoPlist.strings in Resources */,
-				8BC0E20E18DF4B1100B54BF4 /* ObjCFuncOrMethod.grammar in Resources */,
 				8B1EF55218C97D610094D631 /* SimpleText.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -355,7 +320,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BDDE93718D8A29C0077E455 /* TestClass.text in Resources */,
-				8BC0E20F18DF4B1100B54BF4 /* ObjCFuncOrMethod.grammar in Resources */,
 				8BA63AB918C835FE00B97466 /* InfoPlist.strings in Resources */,
 				8BB95BD118C98C0C00914FB4 /* SimpleText.txt in Resources */,
 			);
@@ -364,21 +328,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		52AB7A4C294B4991B8774211 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
 		654BB7E1FD1544E59B732306 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -392,21 +341,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Pods-XcodeRefactoringPlusTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B52BB6A6BE8F4341A5F50339 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-XcodeRefactoringPlus-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DA43B07E128B49EFBF1CB178 /* Check Pods Manifest.lock */ = {
@@ -431,9 +365,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BC0E21418DF4B1100B54BF4 /* ObjCFuncOrMethodParser.m in Sources */,
 				8B5FED1118C738B2001BD004 /* XcodeRefactoringPlus.m in Sources */,
-				8BC0E21118DF4B1100B54BF4 /* ObjCFuncOrMethodAssembler.m in Sources */,
 				8BFD8B7118D4B944002CD274 /* RefactoringLogic.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -443,11 +375,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BA63AC218C83BF500B97466 /* XcodeRefactoringPlus.m in Sources */,
-				8BC0E21518DF4B1100B54BF4 /* ObjCFuncOrMethodParser.m in Sources */,
 				8BA63ABB18C835FE00B97466 /* XcodeRefactoringPlusTests.m in Sources */,
 				8BFD8B7218D4B944002CD274 /* RefactoringLogic.m in Sources */,
 				8B0B2B0F18D9659A00DF42EA /* TestClass.m in Sources */,
-				8BC0E21218DF4B1100B54BF4 /* ObjCFuncOrMethodAssembler.m in Sources */,
 				8BFD8B7418D4B94F002CD274 /* RefactoringLogicTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -552,7 +482,6 @@
 		};
 		8B5FED1618C738B2001BD004 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 43595041BFE84450B938C817 /* Pods-XcodeRefactoringPlus.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				DEPLOYMENT_LOCATION = YES;
@@ -572,7 +501,6 @@
 		};
 		8B5FED1718C738B2001BD004 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 43595041BFE84450B938C817 /* Pods-XcodeRefactoringPlus.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				DEPLOYMENT_LOCATION = YES;
