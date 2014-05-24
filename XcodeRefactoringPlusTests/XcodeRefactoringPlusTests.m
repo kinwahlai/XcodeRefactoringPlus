@@ -51,6 +51,7 @@ OBJC_EXPORT Class loadClassFromDVTFramework(NSString *className)
 -(void)duplicateLine;
 -(void)moveLineDown;
 -(void)moveLineUp;
+-(void)extractLocalVariable;
 -(NSResponder *)getFirstResponder;
 @end
 
@@ -110,6 +111,13 @@ OBJC_EXPORT Class loadClassFromDVTFramework(NSString *className)
 {
     [[refactoringLogic expect] moveUpLineWithRange:NSMakeRange(0, 0) inTextView:OCMOCK_ANY];
     expect(^{[myplugin moveLineUp];}).toNot.raiseAny();
+    [refactoringLogic verify];
+}
+
+- (void)testExtractLocalVariable
+{
+    [[refactoringLogic expect] extractLocalVariableWithRange:NSMakeRange(0, 0) inTextView:OCMOCK_ANY];
+    expect(^{[myplugin extractLocalVariable];}).toNot.raiseAny();
     [refactoringLogic verify];
 }
 @end

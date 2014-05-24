@@ -22,14 +22,13 @@
 		8BA63AC318C83C2B00B97466 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5FED0518C738B2001BD004 /* AppKit.framework */; };
 		8BA63AC418C83C3700B97466 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5FED0718C738B2001BD004 /* Foundation.framework */; };
 		8BB95BD118C98C0C00914FB4 /* SimpleText.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8B1EF55118C97D610094D631 /* SimpleText.txt */; };
+		8BD94B2F18E2948B00CE6731 /* IDEFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD94B2D18E2948B00CE6731 /* IDEFoundation.framework */; };
+		8BD94B3018E2948B00CE6731 /* IDEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD94B2E18E2948B00CE6731 /* IDEKit.framework */; };
+		8BD94B3118E294BE00CE6731 /* IDEFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD94B2D18E2948B00CE6731 /* IDEFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		8BD94B3218E294BF00CE6731 /* IDEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD94B2E18E2948B00CE6731 /* IDEKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		8BDDE93718D8A29C0077E455 /* TestClass.text in Resources */ = {isa = PBXBuildFile; fileRef = 8BDDE93618D8A29C0077E455 /* TestClass.text */; };
 		8BFD8B6618D4B881002CD274 /* DVTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B06BBB518CEAB92004DD905 /* DVTKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		8BFD8B6718D4B885002CD274 /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B06BBB418CEAB92004DD905 /* DVTFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		8BFD8B6918D4B8AB002CD274 /* DVTFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B06BBAD18CEA2B7004DD905 /* DVTFoundation.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		8BFD8B6A18D4B8AB002CD274 /* DVTKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B06BBAE18CEA2B7004DD905 /* DVTKit.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		8BFD8B6B18D4B8AB002CD274 /* IDEFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B06BBAF18CEA2B7004DD905 /* IDEFoundation.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		8BFD8B6C18D4B8AB002CD274 /* IDEKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B06BBB018CEA2B7004DD905 /* IDEKit.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		8BFD8B6D18D4B8AB002CD274 /* IDESourceEditor.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B06BBB118CEA2B7004DD905 /* IDESourceEditor.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		8BFD8B7018D4B944002CD274 /* RefactoringLogic.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFD8B6E18D4B944002CD274 /* RefactoringLogic.h */; };
 		8BFD8B7118D4B944002CD274 /* RefactoringLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFD8B6F18D4B944002CD274 /* RefactoringLogic.m */; };
 		8BFD8B7218D4B944002CD274 /* RefactoringLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFD8B6F18D4B944002CD274 /* RefactoringLogic.m */; };
 		8BFD8B7418D4B94F002CD274 /* RefactoringLogicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFD8B7318D4B94F002CD274 /* RefactoringLogicTests.m */; };
@@ -47,13 +46,14 @@
 
 /* Begin PBXFileReference section */
 		1954A2DD7834494DA54C9886 /* libPods-XcodeRefactoringPlusTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XcodeRefactoringPlusTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		68419A8320BF436991C55061 /* libPods-XcodeRefactoringPlus.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XcodeRefactoringPlus.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B06BBAD18CEA2B7004DD905 /* DVTFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTFoundation.h; sourceTree = "<group>"; };
 		8B06BBAE18CEA2B7004DD905 /* DVTKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTKit.h; sourceTree = "<group>"; };
 		8B06BBAF18CEA2B7004DD905 /* IDEFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDEFoundation.h; sourceTree = "<group>"; };
-		8B06BBB018CEA2B7004DD905 /* IDEKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDEKit.h; sourceTree = "<group>"; };
 		8B06BBB118CEA2B7004DD905 /* IDESourceEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDESourceEditor.h; sourceTree = "<group>"; };
 		8B06BBB418CEAB92004DD905 /* DVTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTFoundation.framework; path = ../SharedFrameworks/DVTFoundation.framework; sourceTree = DEVELOPER_DIR; };
 		8B06BBB518CEAB92004DD905 /* DVTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTKit.framework; path = ../SharedFrameworks/DVTKit.framework; sourceTree = DEVELOPER_DIR; };
+		8B0B2B0E18D9659A00DF42EA /* TestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestClass.m; sourceTree = "<group>"; };
 		8B1EF55118C97D610094D631 /* SimpleText.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SimpleText.txt; sourceTree = "<group>"; };
 		8B5FED0218C738B2001BD004 /* XcodeRefactoringPlus.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XcodeRefactoringPlus.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B5FED0518C738B2001BD004 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -69,6 +69,10 @@
 		8BA63AB818C835FE00B97466 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8BA63ABA18C835FE00B97466 /* XcodeRefactoringPlusTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XcodeRefactoringPlusTests.m; sourceTree = "<group>"; };
 		8BA63ABC18C835FE00B97466 /* XcodeRefactoringPlusTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XcodeRefactoringPlusTests-Prefix.pch"; sourceTree = "<group>"; };
+		8BD94B2B18E2933600CE6731 /* IDEKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDEKit.h; sourceTree = "<group>"; };
+		8BD94B2D18E2948B00CE6731 /* IDEFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEFoundation.framework; path = ../../../../../../Applications/Xcode.app/Contents/Frameworks/IDEFoundation.framework; sourceTree = "<group>"; };
+		8BD94B2E18E2948B00CE6731 /* IDEKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEKit.framework; path = ../../../../../../Applications/Xcode.app/Contents/Frameworks/IDEKit.framework; sourceTree = "<group>"; };
+		8BDDE93618D8A29C0077E455 /* TestClass.text */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TestClass.text; sourceTree = "<group>"; };
 		8BFD8B6E18D4B944002CD274 /* RefactoringLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefactoringLogic.h; sourceTree = "<group>"; };
 		8BFD8B6F18D4B944002CD274 /* RefactoringLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefactoringLogic.m; sourceTree = "<group>"; };
 		8BFD8B7318D4B94F002CD274 /* RefactoringLogicTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefactoringLogicTests.m; sourceTree = "<group>"; };
@@ -80,6 +84,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BD94B2F18E2948B00CE6731 /* IDEFoundation.framework in Frameworks */,
+				8BD94B3018E2948B00CE6731 /* IDEKit.framework in Frameworks */,
 				8B5FED0618C738B2001BD004 /* AppKit.framework in Frameworks */,
 				8B5FED0818C738B2001BD004 /* Foundation.framework in Frameworks */,
 				8B06BBB618CEAB92004DD905 /* DVTFoundation.framework in Frameworks */,
@@ -91,6 +97,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BD94B3118E294BE00CE6731 /* IDEFoundation.framework in Frameworks */,
+				8BD94B3218E294BF00CE6731 /* IDEKit.framework in Frameworks */,
 				8BA63AC418C83C3700B97466 /* Foundation.framework in Frameworks */,
 				8BA63AC318C83C2B00B97466 /* AppKit.framework in Frameworks */,
 				461128A262594A529524A0A0 /* libPods-XcodeRefactoringPlusTests.a in Frameworks */,
@@ -115,10 +123,10 @@
 		8B06BBAC18CEA2B7004DD905 /* Xcode4 */ = {
 			isa = PBXGroup;
 			children = (
+				8BD94B2B18E2933600CE6731 /* IDEKit.h */,
 				8B06BBAD18CEA2B7004DD905 /* DVTFoundation.h */,
 				8B06BBAE18CEA2B7004DD905 /* DVTKit.h */,
 				8B06BBAF18CEA2B7004DD905 /* IDEFoundation.h */,
-				8B06BBB018CEA2B7004DD905 /* IDEKit.h */,
 				8B06BBB118CEA2B7004DD905 /* IDESourceEditor.h */,
 			);
 			path = Xcode4;
@@ -154,12 +162,15 @@
 		8B5FED0418C738B2001BD004 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8BD94B2D18E2948B00CE6731 /* IDEFoundation.framework */,
+				8BD94B2E18E2948B00CE6731 /* IDEKit.framework */,
 				8B06BBB418CEAB92004DD905 /* DVTFoundation.framework */,
 				8B06BBB518CEAB92004DD905 /* DVTKit.framework */,
 				8B5FED0518C738B2001BD004 /* AppKit.framework */,
 				8B5FED0718C738B2001BD004 /* Foundation.framework */,
 				8BA63AB218C835FE00B97466 /* XCTest.framework */,
 				1954A2DD7834494DA54C9886 /* libPods-XcodeRefactoringPlusTests.a */,
+				68419A8320BF436991C55061 /* libPods-XcodeRefactoringPlus.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -191,6 +202,8 @@
 		8BA63AB418C835FE00B97466 /* XcodeRefactoringPlusTests */ = {
 			isa = PBXGroup;
 			children = (
+				8B0B2B0E18D9659A00DF42EA /* TestClass.m */,
+				8BDDE93618D8A29C0077E455 /* TestClass.text */,
 				8BFD8B7318D4B94F002CD274 /* RefactoringLogicTests.m */,
 				8BA63ABA18C835FE00B97466 /* XcodeRefactoringPlusTests.m */,
 				8BA63AB518C835FE00B97466 /* Supporting Files */,
@@ -209,22 +222,6 @@
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
-
-/* Begin PBXHeadersBuildPhase section */
-		8BFD8B6818D4B8A0002CD274 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8BFD8B6918D4B8AB002CD274 /* DVTFoundation.h in Headers */,
-				8BFD8B6A18D4B8AB002CD274 /* DVTKit.h in Headers */,
-				8BFD8B6B18D4B8AB002CD274 /* IDEFoundation.h in Headers */,
-				8BFD8B6C18D4B8AB002CD274 /* IDEKit.h in Headers */,
-				8BFD8B7018D4B944002CD274 /* RefactoringLogic.h in Headers */,
-				8BFD8B6D18D4B8AB002CD274 /* IDESourceEditor.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		8B5FED0118C738B1001BD004 /* XcodeRefactoringPlus */ = {
@@ -249,7 +246,6 @@
 			buildConfigurationList = 8BA63AC118C835FE00B97466 /* Build configuration list for PBXNativeTarget "XcodeRefactoringPlusTests" */;
 			buildPhases = (
 				DA43B07E128B49EFBF1CB178 /* Check Pods Manifest.lock */,
-				8BFD8B6818D4B8A0002CD274 /* Headers */,
 				8BA63AAD18C835FE00B97466 /* Sources */,
 				8BA63AAE18C835FE00B97466 /* Frameworks */,
 				8BA63AAF18C835FE00B97466 /* Resources */,
@@ -311,6 +307,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BDDE93718D8A29C0077E455 /* TestClass.text in Resources */,
 				8BA63AB918C835FE00B97466 /* InfoPlist.strings in Resources */,
 				8BB95BD118C98C0C00914FB4 /* SimpleText.txt in Resources */,
 			);
@@ -433,6 +430,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"${PROJECT_DIR}/XcodeRefactoringPlus/XcodeClasses",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -465,6 +467,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"${PROJECT_DIR}/XcodeRefactoringPlus/XcodeClasses",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				SDKROOT = macosx;
 			};
@@ -479,6 +486,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/SharedFrameworks",
+					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XcodeRefactoringPlus/XcodeRefactoringPlus-Prefix.pch";
@@ -498,6 +506,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/SharedFrameworks",
+					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XcodeRefactoringPlus/XcodeRefactoringPlus-Prefix.pch";
@@ -517,6 +526,7 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/SharedFrameworks",
+					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XcodeRefactoringPlusTests/XcodeRefactoringPlusTests-Prefix.pch";
@@ -539,6 +549,7 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/SharedFrameworks",
+					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XcodeRefactoringPlusTests/XcodeRefactoringPlusTests-Prefix.pch";

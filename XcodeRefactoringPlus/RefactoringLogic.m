@@ -53,11 +53,73 @@
     [codeEditor setSelectedRange:[codeEditor.string lineRangeForRange:codeEditor.selectedRange]];
 }
 
+- (void)extractLocalVariableWithRange:(NSRange)range inTextView:(DVTSourceTextView *)codeEditor
+{
+    [codeEditor setSelectedRange:range];
+    
+    @try {
+        DVTTextStorage *storage = codeEditor.textStorage;
+        DVTSourceModel *model = [storage sourceModel];
+        DVTSourceModelItem *selectedItem = [model adjoiningItemAtLocation:codeEditor.selectedRange.location];
+
+        // assuming selected is a method or range
+        if ([self selectedSourceModelItem:selectedItem match:codeEditor.selectedRange]) {
+            NSString *selectedMethod = [codeEditor.string substringWithRange:codeEditor.selectedRange];
+            
+            [codeEditor replaceCharactersInRange:codeEditor.selectedRange withString:@"<#variable#>"];
+            
+            // then insert < # type # > < # aaa # > :: selectedMethod :: below {
+            // wow, this get the current method :P
+            DVTSourceModelItem *aMethodBlock = [model blockItemAtLocation:codeEditor.selectedRange.location];
+            NSRange block_start_line = [codeEditor.string lineRangeForRange:NSMakeRange(aMethodBlock.range.location, 0)];
+            
+            [codeEditor setSelectedRange:NSMakeRange(block_start_line.location + block_start_line.length, 0)];
+            [codeEditor insertText:[NSString stringWithFormat:@"<#type#> <#variable#> = %@;", selectedMethod]];
+            [codeEditor insertNewline:NULL];
+            [codeEditor setSelectedRange:NSMakeRange(block_start_line.location + block_start_line.length, 0)];
+        }
+    }
+    @catch (NSException *exception) {
+        [self showAlertBox:exception];
+    }
+}
+
+- (BOOL) selectedSourceModelItem:(DVTSourceModelItem *)selectedItem match:(NSRange)selectedRange
+{
+    NSRange modelRange = selectedItem.range;
+
+    // assuming [] method doesnt have next item
+    DVTSourceModelItem *nextItem = selectedItem.nextItem;
+    
+    if (nextItem) {
+        modelRange.length += nextItem.range.length;
+    }
+    
+    if (!NSEqualRanges(modelRange, selectedRange)) {
+        //raise
+        NSException* myException = [NSException
+                                    exceptionWithName:@"RefactoringPlusException"
+                                    reason:@"Selected text is not a valid method or function."
+                                    userInfo:NULL];
+        @throw myException;
+    }
+    
+    return YES;
+}
+
 - (void) showMessageBox:(NSString *)text
 {
     NSAlert *alert = [[NSAlert alloc] init];
     
     [alert setMessageText:text];
+    [alert runModal];
+}
+
+- (void) showAlertBox:(NSException *)exception
+{
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert setAlertStyle:NSWarningAlertStyle];
+    [alert setMessageText:exception.reason];
     [alert runModal];
 }
 @end

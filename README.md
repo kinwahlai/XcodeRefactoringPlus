@@ -4,27 +4,50 @@ I miss the refactoring function in eclipse so i create this plugin to extend the
  current refactoring function of xcode to functionality like move line, delete
  line, duplicate line.
 
-### Delete Line
-Delete the line or current selected lines with the keystroke **cmd+D**
+####Delete Line (**cmd+D**)
+Delete the line or current selected lines.
 
-### Duplicate Line
-Duplicate the line or current selected lines with the keystroke **alt+cmd+down**
+####Duplicate Line (**alt+cmd+down**)
+Duplicate the line or current selected lines.
 
-### Move Line
-Move the line or current selected lines with the keystroke
-+ Move Line Down **alt+down**
-+ Move Line Up **alt+up**
+####Move Line (**alt+down** | **alt+up**)
+Move the line or current selected lines
 
-### Installation
+####Extract Local Variable (**alt+cmd+l**)
+Extract the inline code into local variable within the method
+
+*NOTES*: I choose to use placeholder token as solution is to avoid doing any UI implementation for now.
+```
+-(void) bar {
+    **type** **variable** = NSMakeRange(10, 10);
+    [self acceptARange:**variable**];
+}
+
+You will need to update the placeholder token manually.
+```
+---
+## Installation
+####Option 1
 * clone this repo
 * build the plugin and it should install at the right directory
+
+####Option 2
+* install from alcatraz
 * restart xcode
 
-## TODO
-+ Package plugin for Alcatraz xcode plugin manager
-+ Refactor textview manipulation login into separate class
-+ **New Feature : ** Extract Local variable. This is to extract the inline code into local variable within the method.
+####Notes:
+If you cannot use the keystroke, kindly resolve conflict keybinding in
+System Preferences -> Keyboard -> Shortcuts -> App Shortcuts
 
+---
+## TODO
++ Refactor textview manipulation login into separate class
+
+####Done
++ ~~Package plugin for Alcatraz xcode plugin manager~~
++ ~~**New Feature : ** Extract Local variable.~~
+
+---
 ## License
 ```
 // Copyright (c) 2014 KinWah

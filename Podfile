@@ -2,7 +2,6 @@
 platform :osx, "10.8"
 
 target "XcodeRefactoringPlus" do
-
 end
 
 target "XcodeRefactoringPlusTests" do
