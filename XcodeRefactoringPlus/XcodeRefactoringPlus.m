@@ -90,6 +90,12 @@ static XcodeRefactoringPlus *sharedPlugin;
         [moveLineDownMenuItem setTarget:self];
         [moveLineDownMenuItem setKeyEquivalentModifierMask:(NSAlternateKeyMask)];
         [[menuItem submenu] addItem:moveLineDownMenuItem];
+        
+        NSMenuItem *extractLocalVarMenuItem = [[NSMenuItem alloc] initWithTitle:@"Extract Local Variable" action:@selector(extractLocalVariable) keyEquivalent:@"l"];
+        [extractLocalVarMenuItem setTarget:self];
+        [extractLocalVarMenuItem setKeyEquivalentModifierMask:(NSCommandKeyMask | NSControlKeyMask)];
+        [[menuItem submenu] addItem:extractLocalVarMenuItem];
+
     }
 }
 
@@ -111,6 +117,11 @@ static XcodeRefactoringPlus *sharedPlugin;
         return ([firstResponder isKindOfClass:NSClassFromString(@"DVTSourceTextView")] && [firstResponder isKindOfClass:[NSTextView class]]);
     }
     else if([menuItem action] == @selector(moveLineDown))
+    {
+        NSResponder *firstResponder = [[NSApp keyWindow] firstResponder];
+        return ([firstResponder isKindOfClass:NSClassFromString(@"DVTSourceTextView")] && [firstResponder isKindOfClass:[NSTextView class]]);
+    }
+    else if([menuItem action] == @selector(extractLocalVariable))
     {
         NSResponder *firstResponder = [[NSApp keyWindow] firstResponder];
         return ([firstResponder isKindOfClass:NSClassFromString(@"DVTSourceTextView")] && [firstResponder isKindOfClass:[NSTextView class]]);
@@ -168,6 +179,16 @@ static XcodeRefactoringPlus *sharedPlugin;
     if (([firstResponder isKindOfClass:NSClassFromString(@"DVTSourceTextView")] && [firstResponder isKindOfClass:[NSTextView class]])) {
         DVTSourceTextView *dvtSourceTextView = (DVTSourceTextView*) firstResponder;
         [logic moveUpLineWithRange:dvtSourceTextView.selectedRange inTextView:dvtSourceTextView];
+    }
+}
+
+-(void)extractLocalVariable
+{
+    NSResponder *firstResponder;
+    firstResponder = [self getFirstResponder];
+    if (([firstResponder isKindOfClass:NSClassFromString(@"DVTSourceTextView")] && [firstResponder isKindOfClass:[NSTextView class]])) {
+        DVTSourceTextView *dvtSourceTextView = (DVTSourceTextView*) firstResponder;
+        [logic extractLocalVariableWithRange:dvtSourceTextView.selectedRange inTextView:dvtSourceTextView];
     }
 }
 
