@@ -1,0 +1,29 @@
+@symbols = ':' ',';
+@start = expression;
+expression = functionExpression | messageExpression;
+
+funcName = Word;
+selector = Word;
+className = Word;
+openSquareParen = '[';
+closeSquareParen = ']';
+openParen = '(';
+closeParen = ')';
+comma = ',';
+colon = ':';
+super = 'super';
+
+messageExpression = openSquareParen receiver messageSelector closeSquareParen;
+receiver = expression | className | super;
+
+messageSelector = selector keywordArgumentList;
+keywordArgumentList = Empty | keywordArgument*;
+keywordArgument = colon agrument | selector colon agrument;
+
+functionExpression = funcName openParen paramListOpt closeParen;
+
+paramListOpt = Empty | paramList;
+paramList = agrument commaArgument*;
+commaArgument = comma agrument;
+
+agrument = QuotedString | Word | Number | expression;
