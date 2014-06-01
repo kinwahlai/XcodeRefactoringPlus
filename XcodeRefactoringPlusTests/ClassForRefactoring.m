@@ -1,8 +1,8 @@
-@interface TestClass : NSObject
+@interface ClassForRefactoring : NSObject
 
 @end
 
-@implementation TestClass
+@implementation ClassForRefactoring
 
 -(void) foo
 {
@@ -13,8 +13,7 @@
 
 -(void)acceptARange:(NSRange)range {};
 
--(void) bar
-{
+-(void) bar {
     // we want to extract inline NSMakeRange(0,0) into local variable
     [self acceptARange:NSMakeRange(0, 0)];
 }
