@@ -61,15 +61,14 @@
         DVTTextStorage *storage = codeEditor.textStorage;
         DVTSourceModel *model = [storage sourceModel];
         DVTSourceModelItem *selectedItem = [model adjoiningItemAtLocation:codeEditor.selectedRange.location];
-
+        
         // assuming selected is a method or range
         if ([self selectedSourceModelItem:selectedItem match:codeEditor.selectedRange]) {
+//            codeEditor moveExpressionForward
             NSString *selectedMethod = [codeEditor.string substringWithRange:codeEditor.selectedRange];
             
             [codeEditor replaceCharactersInRange:codeEditor.selectedRange withString:@"<#variable#>"];
             
-            // then insert < # type # > < # aaa # > :: selectedMethod :: below {
-            // wow, this get the current method :P
             DVTSourceModelItem *aMethodBlock = [model blockItemAtLocation:codeEditor.selectedRange.location];
             NSRange block_start_line = [codeEditor.string lineRangeForRange:NSMakeRange(aMethodBlock.range.location, 0)];
             

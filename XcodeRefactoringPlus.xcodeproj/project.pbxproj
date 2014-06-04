@@ -10,7 +10,9 @@
 		461128A262594A529524A0A0 /* libPods-XcodeRefactoringPlusTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1954A2DD7834494DA54C9886 /* libPods-XcodeRefactoringPlusTests.a */; };
 		8B06BBB618CEAB92004DD905 /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B06BBB418CEAB92004DD905 /* DVTFoundation.framework */; };
 		8B06BBB718CEAB92004DD905 /* DVTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B06BBB518CEAB92004DD905 /* DVTKit.framework */; };
-		8B1EF55218C97D610094D631 /* SimpleText.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8B1EF55118C97D610094D631 /* SimpleText.txt */; };
+		8B50EEE4193B9D0C0016EA2E /* ClassForRefactoring.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B0B2B0E18D9659A00DF42EA /* ClassForRefactoring.m */; };
+		8B50EEE6193B9EA70016EA2E /* ClassForRefactoring.m in Resources */ = {isa = PBXBuildFile; fileRef = 8B0B2B0E18D9659A00DF42EA /* ClassForRefactoring.m */; };
+		8B50EEE8193BA5BE0016EA2E /* FileForLineManipuationTest.text in Resources */ = {isa = PBXBuildFile; fileRef = 8B50EEE7193BA5BE0016EA2E /* FileForLineManipuationTest.text */; };
 		8B5FED0618C738B2001BD004 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5FED0518C738B2001BD004 /* AppKit.framework */; };
 		8B5FED0818C738B2001BD004 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5FED0718C738B2001BD004 /* Foundation.framework */; };
 		8B5FED0E18C738B2001BD004 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8B5FED0C18C738B2001BD004 /* InfoPlist.strings */; };
@@ -21,12 +23,10 @@
 		8BA63AC218C83BF500B97466 /* XcodeRefactoringPlus.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5FED1018C738B2001BD004 /* XcodeRefactoringPlus.m */; };
 		8BA63AC318C83C2B00B97466 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5FED0518C738B2001BD004 /* AppKit.framework */; };
 		8BA63AC418C83C3700B97466 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5FED0718C738B2001BD004 /* Foundation.framework */; };
-		8BB95BD118C98C0C00914FB4 /* SimpleText.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8B1EF55118C97D610094D631 /* SimpleText.txt */; };
 		8BD94B2F18E2948B00CE6731 /* IDEFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD94B2D18E2948B00CE6731 /* IDEFoundation.framework */; };
 		8BD94B3018E2948B00CE6731 /* IDEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD94B2E18E2948B00CE6731 /* IDEKit.framework */; };
 		8BD94B3118E294BE00CE6731 /* IDEFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD94B2D18E2948B00CE6731 /* IDEFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		8BD94B3218E294BF00CE6731 /* IDEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD94B2E18E2948B00CE6731 /* IDEKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		8BDDE93718D8A29C0077E455 /* TestClass.text in Resources */ = {isa = PBXBuildFile; fileRef = 8BDDE93618D8A29C0077E455 /* TestClass.text */; };
 		8BFD8B6618D4B881002CD274 /* DVTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B06BBB518CEAB92004DD905 /* DVTKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		8BFD8B6718D4B885002CD274 /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B06BBB418CEAB92004DD905 /* DVTFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		8BFD8B7118D4B944002CD274 /* RefactoringLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFD8B6F18D4B944002CD274 /* RefactoringLogic.m */; };
@@ -53,8 +53,9 @@
 		8B06BBB118CEA2B7004DD905 /* IDESourceEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDESourceEditor.h; sourceTree = "<group>"; };
 		8B06BBB418CEAB92004DD905 /* DVTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTFoundation.framework; path = ../SharedFrameworks/DVTFoundation.framework; sourceTree = DEVELOPER_DIR; };
 		8B06BBB518CEAB92004DD905 /* DVTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTKit.framework; path = ../SharedFrameworks/DVTKit.framework; sourceTree = DEVELOPER_DIR; };
-		8B0B2B0E18D9659A00DF42EA /* TestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestClass.m; sourceTree = "<group>"; };
+		8B0B2B0E18D9659A00DF42EA /* ClassForRefactoring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassForRefactoring.m; sourceTree = "<group>"; };
 		8B1EF55118C97D610094D631 /* SimpleText.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SimpleText.txt; sourceTree = "<group>"; };
+		8B50EEE7193BA5BE0016EA2E /* FileForLineManipuationTest.text */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FileForLineManipuationTest.text; sourceTree = "<group>"; };
 		8B5FED0218C738B2001BD004 /* XcodeRefactoringPlus.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XcodeRefactoringPlus.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B5FED0518C738B2001BD004 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		8B5FED0718C738B2001BD004 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -72,7 +73,6 @@
 		8BD94B2B18E2933600CE6731 /* IDEKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDEKit.h; sourceTree = "<group>"; };
 		8BD94B2D18E2948B00CE6731 /* IDEFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEFoundation.framework; path = ../../../../../../Applications/Xcode.app/Contents/Frameworks/IDEFoundation.framework; sourceTree = "<group>"; };
 		8BD94B2E18E2948B00CE6731 /* IDEKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEKit.framework; path = ../../../../../../Applications/Xcode.app/Contents/Frameworks/IDEKit.framework; sourceTree = "<group>"; };
-		8BDDE93618D8A29C0077E455 /* TestClass.text */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TestClass.text; sourceTree = "<group>"; };
 		8BFD8B6E18D4B944002CD274 /* RefactoringLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefactoringLogic.h; sourceTree = "<group>"; };
 		8BFD8B6F18D4B944002CD274 /* RefactoringLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefactoringLogic.m; sourceTree = "<group>"; };
 		8BFD8B7318D4B94F002CD274 /* RefactoringLogicTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefactoringLogicTests.m; sourceTree = "<group>"; };
@@ -202,8 +202,8 @@
 		8BA63AB418C835FE00B97466 /* XcodeRefactoringPlusTests */ = {
 			isa = PBXGroup;
 			children = (
-				8B0B2B0E18D9659A00DF42EA /* TestClass.m */,
-				8BDDE93618D8A29C0077E455 /* TestClass.text */,
+				8B50EEE7193BA5BE0016EA2E /* FileForLineManipuationTest.text */,
+				8B0B2B0E18D9659A00DF42EA /* ClassForRefactoring.m */,
 				8BFD8B7318D4B94F002CD274 /* RefactoringLogicTests.m */,
 				8BA63ABA18C835FE00B97466 /* XcodeRefactoringPlusTests.m */,
 				8BA63AB518C835FE00B97466 /* Supporting Files */,
@@ -299,7 +299,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B5FED0E18C738B2001BD004 /* InfoPlist.strings in Resources */,
-				8B1EF55218C97D610094D631 /* SimpleText.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,9 +306,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BDDE93718D8A29C0077E455 /* TestClass.text in Resources */,
+				8B50EEE6193B9EA70016EA2E /* ClassForRefactoring.m in Resources */,
 				8BA63AB918C835FE00B97466 /* InfoPlist.strings in Resources */,
-				8BB95BD118C98C0C00914FB4 /* SimpleText.txt in Resources */,
+				8B50EEE8193BA5BE0016EA2E /* FileForLineManipuationTest.text in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,6 +361,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B50EEE4193B9D0C0016EA2E /* ClassForRefactoring.m in Sources */,
 				8BA63AC218C83BF500B97466 /* XcodeRefactoringPlus.m in Sources */,
 				8BA63ABB18C835FE00B97466 /* XcodeRefactoringPlusTests.m in Sources */,
 				8BFD8B7218D4B944002CD274 /* RefactoringLogic.m in Sources */,

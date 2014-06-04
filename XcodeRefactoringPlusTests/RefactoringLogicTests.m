@@ -34,6 +34,8 @@
     NSString *multilines;
     Class dvtSourceTextViewClass;
     Class dvtSourceTextStorageClass;
+    
+    NSString *aClass;
 }
 @end
 
@@ -66,18 +68,17 @@
     
     dvtTextView = [OCMockObject mockForClass:dvtSourceTextViewClass];
     rlogic = [[RefactoringLogic alloc] init];
-    multilines = @"# Uncomment this line to define a global platform for your project\n\
-platform :osx, \"10.8\"\n\
-\n\
-target \"XcodeRefactoringPlus\" do\n\
-\n\
-end\n\
-\n\
-target \"XcodeRefactoringPlusTests\" do\n\
-pod 'OCMock', '~> 2.2.3'\n\
-pod 'Expecta', '~> 0.2.3'\n\
-end";
+    
+    
+    multilines = [NSString stringWithContentsOfFile:getTestFile(@"FileForLineManipuationTest.text") encoding:NSUTF8StringEncoding error:NULL];
+    aClass = [NSString stringWithContentsOfFile:getTestFile(@"ClassForRefactoring.m") encoding:NSUTF8StringEncoding error:NULL];
+    
     [[[dvtTextView stub] andReturn:multilines] string];
+}
+
+NSString* getTestFile(NSString* testFile)
+{
+    return [[@__FILE__ stringByDeletingLastPathComponent] stringByAppendingPathComponent:testFile];
 }
 
 - (void)tearDown
@@ -87,7 +88,7 @@ end";
 
 - (void)testDeleteSelectedLine
 {
-    [[dvtTextView stub] setSelectedRange:NSMakeRange(0, 67)];
+    [[dvtTextView expect] setSelectedRange:NSMakeRange(0, 67)];
     [[dvtTextView expect] deleteToEndOfLine:nil];
     [rlogic deleteLineWithRange:NSMakeRange(0, 0) inTextView:dvtTextView];
     [dvtTextView verify];
@@ -95,8 +96,8 @@ end";
 
 - (void)testDuplicateSelectedLine
 {
-    [[dvtTextView stub] setSelectedRange:NSMakeRange(67, 0)];
-    [[dvtTextView stub] setSelectedRange:NSMakeRange(67, 67)]; // to highlight the duplicated line
+    [[dvtTextView expect] setSelectedRange:NSMakeRange(67, 0)];
+    [[dvtTextView expect] setSelectedRange:NSMakeRange(67, 67)]; // to highlight the duplicated line
     [[dvtTextView expect] insertText:OCMOCK_ANY];
     [rlogic duplicateLineWithRange:NSMakeRange(0, 0) inTextView:dvtTextView];
     [dvtTextView verify];
@@ -104,20 +105,20 @@ end";
 
 - (void)testMoveSelectedLineDown
 {
-    [[dvtTextView stub] setSelectedRange:NSMakeRange(0, 0)];
+    [[dvtTextView expect] setSelectedRange:NSMakeRange(0, 0)];
     [[dvtTextView expect] moveCurrentLineDown:[OCMArg isNil]];
-    [[[dvtTextView stub] andReturnValue:[NSValue valueWithRange:NSMakeRange(22, 0)]] selectedRange];
-    [[dvtTextView stub] setSelectedRange:NSMakeRange(0, 67)];
+    [[[dvtTextView expect] andReturnValue:[NSValue valueWithRange:NSMakeRange(22, 0)]] selectedRange];
+    [[dvtTextView expect] setSelectedRange:NSMakeRange(0, 67)];
     [rlogic moveDownLineWithRange:NSMakeRange(0, 0) inTextView:dvtTextView];
     [dvtTextView verify];
 }
 
 - (void)testMoveSelectedLineUp
 {
-    [[dvtTextView stub] setSelectedRange:NSMakeRange(0, 0)];
+    [[dvtTextView expect] setSelectedRange:NSMakeRange(0, 0)];
     [[dvtTextView expect] moveCurrentLineUp:[OCMArg isNil]];
-    [[[dvtTextView stub] andReturnValue:[NSValue valueWithRange:NSMakeRange(22, 0)]] selectedRange];
-    [[dvtTextView stub] setSelectedRange:NSMakeRange(0, 67)];
+    [[[dvtTextView expect] andReturnValue:[NSValue valueWithRange:NSMakeRange(22, 0)]] selectedRange];
+    [[dvtTextView expect] setSelectedRange:NSMakeRange(0, 67)];
     [rlogic moveUpLineWithRange:NSMakeRange(0, 0) inTextView:dvtTextView];
     [dvtTextView verify];
 }
