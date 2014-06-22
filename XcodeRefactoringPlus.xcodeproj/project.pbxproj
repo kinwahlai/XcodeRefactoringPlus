@@ -71,8 +71,8 @@
 		8BA63ABA18C835FE00B97466 /* XcodeRefactoringPlusTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XcodeRefactoringPlusTests.m; sourceTree = "<group>"; };
 		8BA63ABC18C835FE00B97466 /* XcodeRefactoringPlusTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XcodeRefactoringPlusTests-Prefix.pch"; sourceTree = "<group>"; };
 		8BD94B2B18E2933600CE6731 /* IDEKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDEKit.h; sourceTree = "<group>"; };
-		8BD94B2D18E2948B00CE6731 /* IDEFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEFoundation.framework; path = ../../../../../../Applications/Xcode.app/Contents/Frameworks/IDEFoundation.framework; sourceTree = "<group>"; };
-		8BD94B2E18E2948B00CE6731 /* IDEKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEKit.framework; path = ../../../../../../Applications/Xcode.app/Contents/Frameworks/IDEKit.framework; sourceTree = "<group>"; };
+		8BD94B2D18E2948B00CE6731 /* IDEFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEFoundation.framework; path = ../Frameworks/IDEFoundation.framework; sourceTree = DEVELOPER_DIR; };
+		8BD94B2E18E2948B00CE6731 /* IDEKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEKit.framework; path = ../Frameworks/IDEKit.framework; sourceTree = DEVELOPER_DIR; };
 		8BFD8B6E18D4B944002CD274 /* RefactoringLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefactoringLogic.h; sourceTree = "<group>"; };
 		8BFD8B6F18D4B944002CD274 /* RefactoringLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefactoringLogic.m; sourceTree = "<group>"; };
 		8BFD8B7318D4B94F002CD274 /* RefactoringLogicTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefactoringLogicTests.m; sourceTree = "<group>"; };
@@ -485,11 +485,15 @@
 				DSTROOT = "$(HOME)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/SharedFrameworks",
-					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks",
+					"$(SYSTEM_DEVELOPER_DIR)/../Frameworks",
+					"$(SYSTEM_DEVELOPER_DIR)/../SharedFrameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XcodeRefactoringPlus/XcodeRefactoringPlus-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PROJECT_DIR}/XcodeRefactoringPlus/XcodeClasses",
+				);
 				INFOPLIST_FILE = "XcodeRefactoringPlus/XcodeRefactoringPlus-Info.plist";
 				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -505,11 +509,15 @@
 				DSTROOT = "$(HOME)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/SharedFrameworks",
-					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks",
+					"$(SYSTEM_DEVELOPER_DIR)/../Frameworks",
+					"$(SYSTEM_DEVELOPER_DIR)/../SharedFrameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XcodeRefactoringPlus/XcodeRefactoringPlus-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PROJECT_DIR}/XcodeRefactoringPlus/XcodeClasses",
+				);
 				INFOPLIST_FILE = "XcodeRefactoringPlus/XcodeRefactoringPlus-Info.plist";
 				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
 				PRODUCT_NAME = "$(TARGET_NAME)";
