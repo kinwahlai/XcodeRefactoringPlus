@@ -101,33 +101,17 @@ static XcodeRefactoringPlus *sharedPlugin;
 
 -(BOOL)validateMenuItem:(NSMenuItem *)menuItem
 {
-    if([menuItem action] == @selector(deleteLine))
+    if([self respondsToSelector:[menuItem action]])
     {
-        NSResponder *firstResponder = [[NSApp keyWindow] firstResponder];
-        return ([firstResponder isKindOfClass:NSClassFromString(@"DVTSourceTextView")] && [firstResponder isKindOfClass:[NSTextView class]]);
+        return [self isFirstResponderATextView:[self getFirstResponder]];
     }
-    else if([menuItem action] == @selector(duplicateLine))
-    {
-        NSResponder *firstResponder = [[NSApp keyWindow] firstResponder];
-        return ([firstResponder isKindOfClass:NSClassFromString(@"DVTSourceTextView")] && [firstResponder isKindOfClass:[NSTextView class]]);
-    }
-    else if([menuItem action] == @selector(moveLineUp))
-    {
-        NSResponder *firstResponder = [[NSApp keyWindow] firstResponder];
-        return ([firstResponder isKindOfClass:NSClassFromString(@"DVTSourceTextView")] && [firstResponder isKindOfClass:[NSTextView class]]);
-    }
-    else if([menuItem action] == @selector(moveLineDown))
-    {
-        NSResponder *firstResponder = [[NSApp keyWindow] firstResponder];
-        return ([firstResponder isKindOfClass:NSClassFromString(@"DVTSourceTextView")] && [firstResponder isKindOfClass:[NSTextView class]]);
-    }
-    else if([menuItem action] == @selector(extractLocalVariable))
-    {
-        NSResponder *firstResponder = [[NSApp keyWindow] firstResponder];
-        return ([firstResponder isKindOfClass:NSClassFromString(@"DVTSourceTextView")] && [firstResponder isKindOfClass:[NSTextView class]]);
-    }
-    
-    return YES;
+        
+    return NO;
+}
+
+-(BOOL)isFirstResponderATextView:(NSResponder*)firstResponder
+{
+    return ([firstResponder isKindOfClass:NSClassFromString(@"DVTSourceTextView")] && [firstResponder isKindOfClass:[NSTextView class]]);
 }
 
 - (void)dealloc
@@ -143,10 +127,8 @@ static XcodeRefactoringPlus *sharedPlugin;
 
 -(void)deleteLine
 {
-    NSResponder *firstResponder;
-    firstResponder = [self getFirstResponder];
-    if (([firstResponder isKindOfClass:NSClassFromString(@"DVTSourceTextView")] && [firstResponder isKindOfClass:[NSTextView class]])) {
-        DVTSourceTextView *dvtSourceTextView = (DVTSourceTextView*) firstResponder;
+    if ([self isFirstResponderATextView:[self getFirstResponder]]) {
+        DVTSourceTextView *dvtSourceTextView = (DVTSourceTextView*) [self getFirstResponder];
         [logic deleteLineWithRange:dvtSourceTextView.selectedRange inTextView:dvtSourceTextView];
     }
 }
@@ -154,50 +136,34 @@ static XcodeRefactoringPlus *sharedPlugin;
 
 -(void)duplicateLine
 {
-    NSResponder *firstResponder;
-    firstResponder = [self getFirstResponder];
-    if (([firstResponder isKindOfClass:NSClassFromString(@"DVTSourceTextView")] && [firstResponder isKindOfClass:[NSTextView class]])) {
-        DVTSourceTextView *dvtSourceTextView = (DVTSourceTextView*) firstResponder;
+    if ([self isFirstResponderATextView:[self getFirstResponder]]) {
+        DVTSourceTextView *dvtSourceTextView = (DVTSourceTextView*) [self getFirstResponder];
         [logic duplicateLineWithRange:dvtSourceTextView.selectedRange inTextView:dvtSourceTextView];
     }
 }
 
 -(void)moveLineDown
 {
-    NSResponder *firstResponder;
-    firstResponder = [self getFirstResponder];
-    if (([firstResponder isKindOfClass:NSClassFromString(@"DVTSourceTextView")] && [firstResponder isKindOfClass:[NSTextView class]])) {
-        DVTSourceTextView *dvtSourceTextView = (DVTSourceTextView*) firstResponder;
+    if ([self isFirstResponderATextView:[self getFirstResponder]]) {
+        DVTSourceTextView *dvtSourceTextView = (DVTSourceTextView*) [self getFirstResponder];
         [logic moveDownLineWithRange:dvtSourceTextView.selectedRange inTextView:dvtSourceTextView];
     }
 }
 
 -(void)moveLineUp
 {
-    NSResponder *firstResponder;
-    firstResponder = [self getFirstResponder];
-    if (([firstResponder isKindOfClass:NSClassFromString(@"DVTSourceTextView")] && [firstResponder isKindOfClass:[NSTextView class]])) {
-        DVTSourceTextView *dvtSourceTextView = (DVTSourceTextView*) firstResponder;
+    if ([self isFirstResponderATextView:[self getFirstResponder]]) {
+        DVTSourceTextView *dvtSourceTextView = (DVTSourceTextView*) [self getFirstResponder];
         [logic moveUpLineWithRange:dvtSourceTextView.selectedRange inTextView:dvtSourceTextView];
     }
 }
 
 -(void)extractLocalVariable
 {
-    NSResponder *firstResponder;
-    firstResponder = [self getFirstResponder];
-    if (([firstResponder isKindOfClass:NSClassFromString(@"DVTSourceTextView")] && [firstResponder isKindOfClass:[NSTextView class]])) {
-        DVTSourceTextView *dvtSourceTextView = (DVTSourceTextView*) firstResponder;
+    if ([self isFirstResponderATextView:[self getFirstResponder]]) {
+        DVTSourceTextView *dvtSourceTextView = (DVTSourceTextView*) [self getFirstResponder];
         [logic extractLocalVariableWithRange:dvtSourceTextView.selectedRange inTextView:dvtSourceTextView];
     }
-}
-
-- (void) showMessageBox:(NSString *)text
-{
-    NSAlert *alert = [[NSAlert alloc] init];
-    
-    [alert setMessageText:text];
-    [alert runModal];
 }
 
 @end

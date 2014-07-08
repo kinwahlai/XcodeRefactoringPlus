@@ -108,14 +108,6 @@
     return YES;
 }
 
-- (void) showMessageBox:(NSString *)text
-{
-    NSAlert *alert = [[NSAlert alloc] init];
-    
-    [alert setMessageText:text];
-    [alert runModal];
-}
-
 - (void) showAlertBox:(NSException *)exception
 {
     NSAlert *alert = [[NSAlert alloc] init];
