@@ -28,15 +28,36 @@
 #import "DVTKit.h"
 
 @interface RefactoringLogicUnderTest : RefactoringLogic
-
+@property BOOL isValidFunc;
+@property BOOL isAlertShowed;
 @end
 
 @implementation RefactoringLogicUnderTest
+- (instancetype)initForTest
+{
+    self = [super init];
+    if (self) {
+        self.isValidFunc = YES;
+        self.isAlertShowed = NO;
+    }
+    return self;
+}
 - (NSRange)getBlockStartLine:(DVTSourceTextView *)codeEditor {
     return NSMakeRange(0, 0);
 }
 - (BOOL) isSelectedRangeInTextViewValid:(DVTSourceTextView *)codeEditor {
-    return YES;
+    if (!self.isValidFunc) {
+        NSException* myException = [NSException
+                                    exceptionWithName:@"RefactoringPlusException"
+                                    reason:@"Selected text is not a valid method or function."
+                                    userInfo:NULL];
+        @throw myException;
+    }
+    return self.isValidFunc;
+}
+- (void) showAlertBox:(NSException *)exception
+{
+    self.isAlertShowed = YES;
 }
 @end
 
@@ -81,8 +102,7 @@
     
     dvtTextView = [OCMockObject mockForClass:dvtSourceTextViewClass];
     dvtTextStorage = [OCMockObject mockForClass:dvtTextStorageClass];
-    rlogic = [[RefactoringLogicUnderTest alloc] init];
-    
+    rlogic = [[RefactoringLogicUnderTest alloc] initForTest];
     
     multilines = [NSString stringWithContentsOfFile:getTestFile(@"FileForLineManipuationTest.text") encoding:NSUTF8StringEncoding error:NULL];
     aClass = [NSString stringWithContentsOfFile:getTestFile(@"ClassForRefactoring.m") encoding:NSUTF8StringEncoding error:NULL];
@@ -155,5 +175,15 @@ NSString* getTestFile(NSString* testFile)
     
     [rlogic extractLocalVariableWithRange:rangeToTest inTextView:dvtTextView];
     [dvtTextView verify];
+}
+
+-(void)testShowAlertIfInvalidFuncWhenExtractToLocalVariable
+{
+    rlogic.isValidFunc = NO;
+    NSRange rangeToTest = NSMakeRange(0, 0);
+    [[dvtTextView expect] setSelectedRange:rangeToTest];
+    [rlogic extractLocalVariableWithRange:rangeToTest inTextView:dvtTextView];
+    [dvtTextView verify];
+    XCTAssertEqual(YES, rlogic.isAlertShowed);
 }
 @end
