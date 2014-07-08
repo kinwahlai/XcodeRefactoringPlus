@@ -58,20 +58,10 @@
     [codeEditor setSelectedRange:range];
     
     @try {
-        DVTTextStorage *storage = codeEditor.textStorage;
-        DVTSourceModel *model = [storage sourceModel];
-        DVTSourceModelItem *selectedItem = [model adjoiningItemAtLocation:codeEditor.selectedRange.location];
-        
-        // assuming selected is a method or range
-        if ([self selectedSourceModelItem:selectedItem match:codeEditor.selectedRange]) {
-//            codeEditor moveExpressionForward
+        if ([self isSelectedRangeInTextViewValid:codeEditor]) {
             NSString *selectedMethod = [codeEditor.string substringWithRange:codeEditor.selectedRange];
-            
             [codeEditor replaceCharactersInRange:codeEditor.selectedRange withString:@"<#variable#>"];
-            
-            DVTSourceModelItem *aMethodBlock = [model blockItemAtLocation:codeEditor.selectedRange.location];
-            NSRange block_start_line = [codeEditor.string lineRangeForRange:NSMakeRange(aMethodBlock.range.location, 0)];
-            
+            NSRange block_start_line = [self getBlockStartLine:codeEditor];
             [codeEditor setSelectedRange:NSMakeRange(block_start_line.location + block_start_line.length, 0)];
             [codeEditor insertText:[NSString stringWithFormat:@"<#type#> <#variable#> = %@;", selectedMethod]];
             [codeEditor insertNewline:NULL];
@@ -83,10 +73,22 @@
     }
 }
 
-- (BOOL) selectedSourceModelItem:(DVTSourceModelItem *)selectedItem match:(NSRange)selectedRange
+- (NSRange)getBlockStartLine:(DVTSourceTextView *)codeEditor
 {
-    NSRange modelRange = selectedItem.range;
+    DVTTextStorage *storage = codeEditor.textStorage;
+    DVTSourceModel *model = [storage sourceModel];
+    DVTSourceModelItem *aMethodBlock = [model blockItemAtLocation:codeEditor.selectedRange.location];
+    return [codeEditor.string lineRangeForRange:NSMakeRange(aMethodBlock.range.location, 0)];
+}
 
+- (BOOL) isSelectedRangeInTextViewValid:(DVTSourceTextView *)codeEditor
+{
+    DVTTextStorage *storage = codeEditor.textStorage;
+    DVTSourceModel *model = [storage sourceModel];
+    DVTSourceModelItem *selectedItem = [model adjoiningItemAtLocation:codeEditor.selectedRange.location];
+    
+    NSRange modelRange = selectedItem.range;
+    
     // assuming [] method doesnt have next item
     DVTSourceModelItem *nextItem = selectedItem.nextItem;
     
@@ -94,7 +96,7 @@
         modelRange.length += nextItem.range.length;
     }
     
-    if (!NSEqualRanges(modelRange, selectedRange)) {
+    if (!NSEqualRanges(modelRange, codeEditor.selectedRange)) {
         //raise
         NSException* myException = [NSException
                                     exceptionWithName:@"RefactoringPlusException"

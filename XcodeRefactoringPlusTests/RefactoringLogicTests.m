@@ -27,14 +27,27 @@
 #import "RefactoringLogic.h"
 #import "DVTKit.h"
 
+@interface RefactoringLogicUnderTest : RefactoringLogic
+
+@end
+
+@implementation RefactoringLogicUnderTest
+- (NSRange)getBlockStartLine:(DVTSourceTextView *)codeEditor {
+    return NSMakeRange(0, 0);
+}
+- (BOOL) isSelectedRangeInTextViewValid:(DVTSourceTextView *)codeEditor {
+    return YES;
+}
+@end
+
 @interface RefactoringLogicTests : XCTestCase
 {
     id dvtTextView;
-    RefactoringLogic *rlogic;
+    id dvtTextStorage;
+    RefactoringLogicUnderTest *rlogic;
     NSString *multilines;
     Class dvtSourceTextViewClass;
-    Class dvtSourceTextStorageClass;
-    
+    Class dvtTextStorageClass;
     NSString *aClass;
 }
 @end
@@ -55,7 +68,7 @@
     void* handleDVTFoundation = dlopen("/Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework/Versions/Current/DVTFoundation", RTLD_NOW);
     void* handleDVTKit = dlopen("/Applications/Xcode.app/Contents/SharedFrameworks/DVTKit.framework/Versions/Current/DVTKit", RTLD_NOW);
     dvtSourceTextViewClass = NSClassFromString(@"DVTSourceTextView");
-    dvtSourceTextStorageClass = NSClassFromString(@"DVTSourceTextStorage");
+    dvtTextStorageClass = NSClassFromString(@"DVTTextStorage");
     dlclose(handleDVTFoundation);
     dlclose(handleDVTKit);
 }
@@ -67,7 +80,8 @@
     [self loadDVTFrameworkAndClass];
     
     dvtTextView = [OCMockObject mockForClass:dvtSourceTextViewClass];
-    rlogic = [[RefactoringLogic alloc] init];
+    dvtTextStorage = [OCMockObject mockForClass:dvtTextStorageClass];
+    rlogic = [[RefactoringLogicUnderTest alloc] init];
     
     
     multilines = [NSString stringWithContentsOfFile:getTestFile(@"FileForLineManipuationTest.text") encoding:NSUTF8StringEncoding error:NULL];
@@ -120,6 +134,26 @@ NSString* getTestFile(NSString* testFile)
     [[[dvtTextView expect] andReturnValue:[NSValue valueWithRange:NSMakeRange(22, 0)]] selectedRange];
     [[dvtTextView expect] setSelectedRange:NSMakeRange(0, 67)];
     [rlogic moveUpLineWithRange:NSMakeRange(0, 0) inTextView:dvtTextView];
+    [dvtTextView verify];
+}
+
+- (void)testExtractToLocalVariableIfValidFunc
+{
+    // this line is actually to reset the mock ;-)
+    [dvtTextView init];
+    NSRange rangeToTest = NSMakeRange(246, 38);
+
+    [[[dvtTextView stub] andReturn:aClass] string];
+    [[[dvtTextView stub] andReturnValue:[NSValue valueWithRange:rangeToTest]] selectedRange];
+    
+    [[dvtTextView expect] setSelectedRange:rangeToTest];
+    [[dvtTextView expect] replaceCharactersInRange:rangeToTest withString:@"<#variable#>"];
+    [[dvtTextView expect] setSelectedRange:NSMakeRange(0, 0)];
+    [[dvtTextView expect] insertText:OCMOCK_ANY];
+    [[dvtTextView expect] insertNewline:NULL];
+    [[dvtTextView expect] setSelectedRange:NSMakeRange(0, 0)];
+    
+    [rlogic extractLocalVariableWithRange:rangeToTest inTextView:dvtTextView];
     [dvtTextView verify];
 }
 @end
