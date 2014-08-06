@@ -23,6 +23,14 @@
 #import "DVTKit.h"
 
 @implementation RefactoringLogic
+- (instancetype)initWithAdapterFactory:(id<DVTAdapterFactory>)factory
+{
+    self = [super init];
+    if (self) {
+        self.factory = factory;
+    }
+    return self;
+}
 - (NSRange) getLineRangeForSelectedRangeInTextView:(DVTSourceTextView*)codeEditor
 {
     return [self getLineRange:codeEditor.selectedRange inTextView:codeEditor];
@@ -142,18 +150,21 @@
 
 - (void)moveDownLineWithRange:(NSRange)range inTextView:(DVTSourceTextView*)codeEditor
 {
-    [self placeCursorAtLocation:range.location inTextView:codeEditor];
+//    [self placeCursorAtLocation:range.location inTextView:codeEditor];
+    [self highlightTextAtRange:range inTextView:codeEditor];
     [self moveCurrentLineDownInTextView:codeEditor];
     [self highlightLine:[self getLineRangeForSelectedRangeInTextView:codeEditor] inTextView:codeEditor];
 }
 
 - (void)moveUpLineWithRange:(NSRange)range inTextView:(DVTSourceTextView*)codeEditor
 {
-    [self placeCursorAtLocation:range.location inTextView:codeEditor];
+//    [self placeCursorAtLocation:range.location inTextView:codeEditor];
+    [self highlightTextAtRange:range inTextView:codeEditor];
     [self moveCurrentLineUpInTextView:codeEditor];
     [self highlightLine:[self getLineRangeForSelectedRangeInTextView:codeEditor] inTextView:codeEditor];
 }
 
+// we need batch edit for better undo
 - (void)extractLocalVariableWithRange:(NSRange)range inTextView:(DVTSourceTextView *)codeEditor
 {
     [self highlightTextAtRange:range inTextView:codeEditor];

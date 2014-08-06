@@ -21,6 +21,7 @@
 #import "XcodeRefactoringPlus.h"
 #import "RefactoringLogic.h"
 #import "DVTKit.h"
+#import "DVTAdapterFactory.h"
 
 static XcodeRefactoringPlus *sharedPlugin;
 
@@ -46,7 +47,7 @@ static XcodeRefactoringPlus *sharedPlugin;
 
 - (id)initWithBundle:(NSBundle *)plugin
 {
-    if (self = [self initWithLogic:[[RefactoringLogic alloc] init]]) {
+    if (self = [self initWithLogic:[[RefactoringLogic alloc] initWithAdapterFactory:[[DVTAdapterFactoryImpl alloc] init]]]) {
         // reference to plugin's bundle, for resource acccess
         self.bundle = plugin;
         [self setupSubMenu:[[[[NSApp mainMenu] itemWithTitle:@"Edit"] submenu] itemWithTitle:@"Refactor"]];

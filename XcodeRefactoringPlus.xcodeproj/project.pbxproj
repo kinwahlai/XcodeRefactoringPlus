@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3AFF61751991DB2F007AB42E /* DVTAdapterFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFF61741991DB2F007AB42E /* DVTAdapterFactory.m */; };
+		3AFF61761991DB2F007AB42E /* DVTAdapterFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFF61741991DB2F007AB42E /* DVTAdapterFactory.m */; };
+		3AFF61791991DD83007AB42E /* DVTAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFF61781991DD83007AB42E /* DVTAdapter.m */; };
+		3AFF617A1991DD83007AB42E /* DVTAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFF61781991DD83007AB42E /* DVTAdapter.m */; };
 		461128A262594A529524A0A0 /* libPods-XcodeRefactoringPlusTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1954A2DD7834494DA54C9886 /* libPods-XcodeRefactoringPlusTests.a */; };
 		8B06BBB618CEAB92004DD905 /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B06BBB418CEAB92004DD905 /* DVTFoundation.framework */; };
 		8B06BBB718CEAB92004DD905 /* DVTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B06BBB518CEAB92004DD905 /* DVTKit.framework */; };
@@ -46,6 +50,10 @@
 
 /* Begin PBXFileReference section */
 		1954A2DD7834494DA54C9886 /* libPods-XcodeRefactoringPlusTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XcodeRefactoringPlusTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3AFF61731991DB2F007AB42E /* DVTAdapterFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTAdapterFactory.h; sourceTree = "<group>"; };
+		3AFF61741991DB2F007AB42E /* DVTAdapterFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVTAdapterFactory.m; sourceTree = "<group>"; };
+		3AFF61771991DD83007AB42E /* DVTAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTAdapter.h; sourceTree = "<group>"; };
+		3AFF61781991DD83007AB42E /* DVTAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVTAdapter.m; sourceTree = "<group>"; };
 		68419A8320BF436991C55061 /* libPods-XcodeRefactoringPlus.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XcodeRefactoringPlus.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B06BBAD18CEA2B7004DD905 /* DVTFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTFoundation.h; sourceTree = "<group>"; };
 		8B06BBAE18CEA2B7004DD905 /* DVTKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTKit.h; sourceTree = "<group>"; };
@@ -185,6 +193,10 @@
 				8B5FED1018C738B2001BD004 /* XcodeRefactoringPlus.m */,
 				8B5FED0A18C738B2001BD004 /* Supporting Files */,
 				8B1EF55118C97D610094D631 /* SimpleText.txt */,
+				3AFF61731991DB2F007AB42E /* DVTAdapterFactory.h */,
+				3AFF61741991DB2F007AB42E /* DVTAdapterFactory.m */,
+				3AFF61771991DD83007AB42E /* DVTAdapter.h */,
+				3AFF61781991DD83007AB42E /* DVTAdapter.m */,
 			);
 			path = XcodeRefactoringPlus;
 			sourceTree = "<group>";
@@ -353,6 +365,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B5FED1118C738B2001BD004 /* XcodeRefactoringPlus.m in Sources */,
+				3AFF61751991DB2F007AB42E /* DVTAdapterFactory.m in Sources */,
+				3AFF61791991DD83007AB42E /* DVTAdapter.m in Sources */,
 				8BFD8B7118D4B944002CD274 /* RefactoringLogic.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -361,7 +375,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AFF617A1991DD83007AB42E /* DVTAdapter.m in Sources */,
 				8B50EEE4193B9D0C0016EA2E /* ClassForRefactoring.m in Sources */,
+				3AFF61761991DB2F007AB42E /* DVTAdapterFactory.m in Sources */,
 				8BA63AC218C83BF500B97466 /* XcodeRefactoringPlus.m in Sources */,
 				8BA63ABB18C835FE00B97466 /* XcodeRefactoringPlusTests.m in Sources */,
 				8BFD8B7218D4B944002CD274 /* RefactoringLogic.m in Sources */,

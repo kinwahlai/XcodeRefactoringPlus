@@ -19,10 +19,13 @@
 // THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import "DVTAdapterFactory.h"
 
 @class DVTSourceTextView;
 
 @interface RefactoringLogic : NSObject
+@property id<DVTAdapterFactory> factory;
+- (instancetype)initWithAdapterFactory:(id<DVTAdapterFactory>) factory;
 - (void)deleteLineWithRange:(NSRange)range inTextView:(DVTSourceTextView*)codeEditor;
 - (void)duplicateLineWithRange:(NSRange)range inTextView:(DVTSourceTextView*)codeEditor;
 - (void)moveDownLineWithRange:(NSRange)range inTextView:(DVTSourceTextView*)codeEditor;

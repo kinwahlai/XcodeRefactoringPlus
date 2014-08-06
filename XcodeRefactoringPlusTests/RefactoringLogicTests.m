@@ -26,6 +26,18 @@
 #import <Expecta.h>
 #import "RefactoringLogic.h"
 #import "DVTKit.h"
+#import "DVTAdapterFactory.h"
+
+@interface FakeAdapterFactory : NSObject  <DVTAdapterFactory>
+
+@end
+
+@implementation FakeAdapterFactory
+-(id<DVTAdapter>)makeAdapter
+{
+    return [OCMockObject mockForProtocol:@protocol(DVTAdapter)];
+}
+@end
 
 @interface RefactoringLogicUnderTest : RefactoringLogic
 @property BOOL isValidFunc;
@@ -35,7 +47,7 @@
 @implementation RefactoringLogicUnderTest
 - (instancetype)initForTest
 {
-    self = [super init];
+    self = [super initWithAdapterFactory:[[FakeAdapterFactory alloc] init]];
     if (self) {
         self.isValidFunc = YES;
         self.isAlertShowed = NO;
