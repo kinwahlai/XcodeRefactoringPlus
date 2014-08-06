@@ -29,97 +29,42 @@
 #import "DVTAdapterFactory.h"
 
 @interface FakeAdapterFactory : NSObject  <DVTAdapterFactory>
-
+@property DVTAdapter* adapter;
 @end
 
 @implementation FakeAdapterFactory
--(id<DVTAdapter>)makeAdapter
+- (instancetype)initWithAdapter:(DVTAdapter*)adapter
 {
-    return [OCMockObject mockForProtocol:@protocol(DVTAdapter)];
-}
-@end
-
-@interface RefactoringLogicUnderTest : RefactoringLogic
-@property BOOL isValidFunc;
-@property BOOL isAlertShowed;
-@end
-
-@implementation RefactoringLogicUnderTest
-- (instancetype)initForTest
-{
-    self = [super initWithAdapterFactory:[[FakeAdapterFactory alloc] init]];
+    self = [super init];
     if (self) {
-        self.isValidFunc = YES;
-        self.isAlertShowed = NO;
+        self.adapter = adapter;
     }
     return self;
 }
-- (NSRange)getBlockStartLine:(DVTSourceTextView *)codeEditor {
-    return NSMakeRange(0, 0);
-}
-- (BOOL) isSelectedRangeInTextViewValid:(DVTSourceTextView *)codeEditor {
-    if (!self.isValidFunc) {
-        NSException* myException = [NSException
-                                    exceptionWithName:@"RefactoringPlusException"
-                                    reason:@"Selected text is not a valid method or function."
-                                    userInfo:NULL];
-        @throw myException;
-    }
-    return self.isValidFunc;
-}
-- (void) showAlertBox:(NSException *)exception
+-(DVTAdapter*)makeAdapterWithCodeEditor:(DVTSourceTextView *)codeEditor
 {
-    self.isAlertShowed = YES;
+    [self.adapter setCodeEditor:codeEditor];
+    return self.adapter;
 }
 @end
 
 @interface RefactoringLogicTests : XCTestCase
 {
-    id dvtTextView;
-    id dvtTextStorage;
-    RefactoringLogicUnderTest *rlogic;
-    NSString *multilines;
-    Class dvtSourceTextViewClass;
-    Class dvtTextStorageClass;
-    NSString *aClass;
+    RefactoringLogic *rlogic;
+    FakeAdapterFactory *fakeFactory;
+    id fakeAdapter;
 }
 @end
 
 @implementation RefactoringLogicTests
-
-// This loading the framework and get the class is to allow us to mock the class
-- (void)loadDVTFrameworkAndClass
-{
-    /**
-     * Another way of loading the private framework
-     * NSBundle *dvtF = [NSBundle bundleWithPath:@"/Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework"];
-     * [dvtF load];
-     * NSBundle *dvt = [NSBundle bundleWithPath:@"/Applications/Xcode.app/Contents/SharedFrameworks/DVTKit.framework"];
-     * [dvt load];
-     **/
-    
-    void* handleDVTFoundation = dlopen("/Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework/Versions/Current/DVTFoundation", RTLD_NOW);
-    void* handleDVTKit = dlopen("/Applications/Xcode.app/Contents/SharedFrameworks/DVTKit.framework/Versions/Current/DVTKit", RTLD_NOW);
-    dvtSourceTextViewClass = NSClassFromString(@"DVTSourceTextView");
-    dvtTextStorageClass = NSClassFromString(@"DVTTextStorage");
-    dlclose(handleDVTFoundation);
-    dlclose(handleDVTKit);
-}
-
 - (void)setUp
 {
     [super setUp];
     
-    [self loadDVTFrameworkAndClass];
-    
-    dvtTextView = [OCMockObject mockForClass:dvtSourceTextViewClass];
-    dvtTextStorage = [OCMockObject mockForClass:dvtTextStorageClass];
-    rlogic = [[RefactoringLogicUnderTest alloc] initForTest];
-    
-    multilines = [NSString stringWithContentsOfFile:getTestFile(@"FileForLineManipuationTest.text") encoding:NSUTF8StringEncoding error:NULL];
-    aClass = [NSString stringWithContentsOfFile:getTestFile(@"ClassForRefactoring.m") encoding:NSUTF8StringEncoding error:NULL];
-    
-    [[[dvtTextView stub] andReturn:multilines] string];
+    fakeAdapter = [OCMockObject mockForClass:[DVTAdapter class]];
+    fakeFactory = [[FakeAdapterFactory alloc] initWithAdapter:fakeAdapter];
+    [[fakeAdapter expect] setCodeEditor:OCMOCK_ANY];
+    rlogic = [[RefactoringLogic alloc] initWithAdapterFactory:fakeFactory];
 }
 
 NSString* getTestFile(NSString* testFile)
@@ -134,68 +79,71 @@ NSString* getTestFile(NSString* testFile)
 
 - (void)testDeleteSelectedLine
 {
-    [[dvtTextView expect] setSelectedRange:NSMakeRange(0, 67)];
-    [[dvtTextView expect] deleteToEndOfLine:nil];
-    [rlogic deleteLineWithRange:NSMakeRange(0, 0) inTextView:dvtTextView];
-    [dvtTextView verify];
+    [[[fakeAdapter expect] andReturnValue:[NSValue valueWithRange:NSMakeRange(0, 67)]] getLineRange:NSMakeRange(0, 0)];
+    [[fakeAdapter expect] highlightLine:NSMakeRange(0, 67)];
+    [[fakeAdapter expect] deleteLine];
+    
+    [rlogic deleteLineWithRange:NSMakeRange(0, 0) inTextView:OCMOCK_ANY];
+    [fakeAdapter verify];
 }
 
 - (void)testDuplicateSelectedLine
 {
-    [[dvtTextView expect] setSelectedRange:NSMakeRange(67, 0)];
-    [[dvtTextView expect] setSelectedRange:NSMakeRange(67, 67)]; // to highlight the duplicated line
-    [[dvtTextView expect] insertText:OCMOCK_ANY];
-    [rlogic duplicateLineWithRange:NSMakeRange(0, 0) inTextView:dvtTextView];
-    [dvtTextView verify];
+    [[[fakeAdapter expect] andReturnValue:[NSValue valueWithRange:NSMakeRange(67, 22)]] getLineRange:NSMakeRange(67, 0)];
+    [[[fakeAdapter expect] andReturn:@"platform :osx, \"10.8\""] getLineContentAtRange:NSMakeRange(67, 22)];
+    [[fakeAdapter expect] placeCursorAtLocation:89];
+    [[fakeAdapter expect] insertLine:@"platform :osx, \"10.8\""];
+    [[fakeAdapter expect] highlightLine:NSMakeRange(89, 22)];
+    
+    [rlogic duplicateLineWithRange:NSMakeRange(67, 0) inTextView:OCMOCK_ANY];
+    [fakeAdapter verify];
 }
 
 - (void)testMoveSelectedLineDown
 {
-    [[dvtTextView expect] setSelectedRange:NSMakeRange(0, 0)];
-    [[dvtTextView expect] moveCurrentLineDown:[OCMArg isNil]];
-    [[[dvtTextView expect] andReturnValue:[NSValue valueWithRange:NSMakeRange(22, 0)]] selectedRange];
-    [[dvtTextView expect] setSelectedRange:NSMakeRange(0, 67)];
-    [rlogic moveDownLineWithRange:NSMakeRange(0, 0) inTextView:dvtTextView];
-    [dvtTextView verify];
+    [[fakeAdapter expect] highlightTextAtRange:NSMakeRange(0, 67)];
+    [[fakeAdapter expect] moveCurrentLineDown];
+    [[[fakeAdapter expect] andReturnValue:[NSValue valueWithRange:NSMakeRange(22, 67)]] getLineRangeForSelectedRange];
+     [[fakeAdapter expect] highlightLine:NSMakeRange(22, 67)];
+    [rlogic moveDownLineWithRange:NSMakeRange(0, 67) inTextView:OCMOCK_ANY];
+    [fakeAdapter verify];
 }
 
 - (void)testMoveSelectedLineUp
 {
-    [[dvtTextView expect] setSelectedRange:NSMakeRange(0, 0)];
-    [[dvtTextView expect] moveCurrentLineUp:[OCMArg isNil]];
-    [[[dvtTextView expect] andReturnValue:[NSValue valueWithRange:NSMakeRange(22, 0)]] selectedRange];
-    [[dvtTextView expect] setSelectedRange:NSMakeRange(0, 67)];
-    [rlogic moveUpLineWithRange:NSMakeRange(0, 0) inTextView:dvtTextView];
-    [dvtTextView verify];
+    [[fakeAdapter expect] highlightTextAtRange:NSMakeRange(89, 22)];
+    [[fakeAdapter expect] moveCurrentLineUp];
+    [[[fakeAdapter expect] andReturnValue:[NSValue valueWithRange:NSMakeRange(0, 22)]] getLineRangeForSelectedRange];
+    [[fakeAdapter expect] highlightLine:NSMakeRange(0, 22)];
+    [rlogic moveUpLineWithRange:NSMakeRange(89, 22) inTextView:OCMOCK_ANY];
+    [fakeAdapter verify];
 }
 
 - (void)testExtractToLocalVariableIfValidFunc
 {
-    // this line is actually to reset the mock ;-)
-    [dvtTextView init];
+    
     NSRange rangeToTest = NSMakeRange(246, 38);
-
-    [[[dvtTextView stub] andReturn:aClass] string];
-    [[[dvtTextView stub] andReturnValue:[NSValue valueWithRange:rangeToTest]] selectedRange];
+    [[fakeAdapter expect] highlightTextAtRange:rangeToTest];
+    [[[fakeAdapter expect] andReturnValue:[NSNumber numberWithBool:YES]] isSelectedRangeInTextViewValid];
+    [[[fakeAdapter expect] andReturn:@"[NSString stringWithFormat:@\"%d\",1234]"] getContentAtRange:rangeToTest];
+    [[fakeAdapter expect] replaceWithPlaceHolderInRange:rangeToTest];
+    [[[fakeAdapter expect] andReturnValue:[NSValue valueWithRange:NSMakeRange(100, 0)]] getBlockStartLine];
+    [[fakeAdapter expect] placeCursorAtLocation:100];
+    [[fakeAdapter expect] insertLine:@"<#type#> <#variable#> = [NSString stringWithFormat:@\"%d\",1234];"];
+    [[fakeAdapter expect] insertNewLine];
+    [[fakeAdapter expect] placeCursorAtLocation:100];
+    [[fakeAdapter expect] selectNextPlaceholder];
     
-    [[dvtTextView expect] setSelectedRange:rangeToTest];
-    [[dvtTextView expect] replaceCharactersInRange:rangeToTest withString:@"<#variable#>"];
-    [[dvtTextView expect] setSelectedRange:NSMakeRange(0, 0)];
-    [[dvtTextView expect] insertText:OCMOCK_ANY];
-    [[dvtTextView expect] insertNewline:NULL];
-    [[dvtTextView expect] setSelectedRange:NSMakeRange(0, 0)];
-    
-    [rlogic extractLocalVariableWithRange:rangeToTest inTextView:dvtTextView];
-    [dvtTextView verify];
+    [rlogic extractLocalVariableWithRange:rangeToTest inTextView:OCMOCK_ANY];
+    [fakeAdapter verify];
 }
 
 -(void)testShowAlertIfInvalidFuncWhenExtractToLocalVariable
 {
-    rlogic.isValidFunc = NO;
     NSRange rangeToTest = NSMakeRange(0, 0);
-    [[dvtTextView expect] setSelectedRange:rangeToTest];
-    [rlogic extractLocalVariableWithRange:rangeToTest inTextView:dvtTextView];
-    [dvtTextView verify];
-    XCTAssertEqual(YES, rlogic.isAlertShowed);
+    [[fakeAdapter expect] highlightTextAtRange:rangeToTest];
+    [[[fakeAdapter expect] andReturnValue:[NSNumber numberWithBool:NO]] isSelectedRangeInTextViewValid];
+    [rlogic extractLocalVariableWithRange:rangeToTest inTextView:OCMOCK_ANY];
+    [fakeAdapter verify];
 }
 @end

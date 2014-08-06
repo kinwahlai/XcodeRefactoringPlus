@@ -8,10 +8,24 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol DVTAdapter <NSObject>
+@class DVTSourceTextView;
 
-@end
-
-@interface DVTAdapterImpl : NSObject <DVTAdapter>
-
+@interface DVTAdapter : NSObject
+@property DVTSourceTextView* codeEditor;
+- (void) highlightLine:(NSRange)linerange;
+- (void) highlightTextAtRange:(NSRange)range;
+- (void) deleteLine;
+- (NSRange) getLineRange:(NSRange)range;
+- (NSString*) getLineContentAtRange:(NSRange)linerange;
+- (void) placeCursorAtLocation:(NSInteger)location;
+- (void) insertLine:(NSString*)content;
+- (void) moveCurrentLineDown;
+- (void) moveCurrentLineUp;
+- (NSRange) getLineRangeForSelectedRange;
+- (BOOL) isSelectedRangeInTextViewValid;
+- (NSString*) getContentAtRange:(NSRange)range;
+- (void) replaceWithPlaceHolderInRange:(NSRange)range;
+- (NSRange) getBlockStartLine;
+- (void) insertNewLine;
+- (void) selectNextPlaceholder;
 @end

@@ -9,8 +9,12 @@
 #import "DVTAdapterFactory.h"
 
 @implementation DVTAdapterFactoryImpl
--(id<DVTAdapter>)makeAdapter
+-(DVTAdapter*)makeAdapterWithCodeEditor:(DVTSourceTextView *)codeEditor
 {
-    return [[DVTAdapterImpl alloc] init];
+    DVTAdapter* adapter = [[DVTAdapter alloc] init];
+    if (adapter) {
+        [adapter setCodeEditor:codeEditor];
+    }
+    return adapter;
 }
 @end

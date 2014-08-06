@@ -9,10 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "DVTAdapter.h"
 
+@class DVTSourceTextView;
+
 @protocol DVTAdapterFactory <NSObject>
--(id<DVTAdapter>)makeAdapter;
+-(DVTAdapter*)makeAdapterWithCodeEditor:(DVTSourceTextView*)codeEditor;
 @end
 
 @interface DVTAdapterFactoryImpl : NSObject <DVTAdapterFactory>
--(id<DVTAdapter>)makeAdapter;
+-(DVTAdapter*)makeAdapterWithCodeEditor:(DVTSourceTextView*)codeEditor;
 @end
