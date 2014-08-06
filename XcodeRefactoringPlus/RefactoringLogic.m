@@ -23,54 +23,70 @@
 #import "DVTKit.h"
 
 @implementation RefactoringLogic
-- (void)deleteLineWithRange:(NSRange)range inTextView:(DVTSourceTextView*)codeEditor
+- (NSRange) getLineRangeForSelectedRangeInTextView:(DVTSourceTextView*)codeEditor
 {
-    NSRange fullLine = [codeEditor.string lineRangeForRange:range];
-    [codeEditor setSelectedRange:fullLine];
+    return [self getLineRange:codeEditor.selectedRange inTextView:codeEditor];
+}
+
+- (NSRange) getLineRange:(NSRange)range inTextView:(DVTSourceTextView*)codeEditor
+{
+    return [codeEditor.string lineRangeForRange:range];
+}
+
+- (void) highlightLine:(NSRange)linerange inTextView:(DVTSourceTextView*)codeEditor
+{
+    [self highlightTextAtRange:linerange inTextView:codeEditor];
+}
+
+- (void) highlightTextAtRange:(NSRange)range inTextView:(DVTSourceTextView*)codeEditor
+{
+    [codeEditor setSelectedRange:range];
+}
+
+- (void) deleteLineInTextView:(DVTSourceTextView*)codeEditor
+{
     [codeEditor deleteToEndOfLine:nil];
 }
 
-- (void)duplicateLineWithRange:(NSRange)range inTextView:(DVTSourceTextView*)codeEditor
+- (NSString*) getContentAtRange:(NSRange)range inTextView:(DVTSourceTextView*)codeEditor
 {
-    NSRange fullLine = [codeEditor.string lineRangeForRange:range];
-    NSString *lineContent = [codeEditor.string substringWithRange:fullLine];
-    [codeEditor setSelectedRange:NSMakeRange(fullLine.location + fullLine.length, 0)];
-    [codeEditor insertText:lineContent];
-    [codeEditor setSelectedRange:NSMakeRange(fullLine.location + fullLine.length, fullLine.length)];
+    return [codeEditor.string substringWithRange:range];
 }
 
-- (void)moveDownLineWithRange:(NSRange)range inTextView:(DVTSourceTextView*)codeEditor
+
+- (NSString*) getLineContentAtRange:(NSRange)linerange inTextView:(DVTSourceTextView*)codeEditor
 {
-    [codeEditor setSelectedRange:range];
+    return [self getContentAtRange:linerange inTextView:codeEditor];
+}
+
+- (void) placeCursorAtLocation:(NSInteger)location inTextView:(DVTSourceTextView*)codeEditor
+{
+    [codeEditor setSelectedRange:NSMakeRange(location, 0)];
+}
+
+- (void) insertLine:(NSString*)content inTextView:(DVTSourceTextView*)codeEditor
+{
+    [codeEditor insertText:content];
+}
+
+- (void) insertNewLineInTextView:(DVTSourceTextView*)codeEditor
+{
+    [codeEditor insertNewline:NULL];
+}
+
+- (void) moveCurrentLineDownInTextView:(DVTSourceTextView*)codeEditor
+{
     [codeEditor moveCurrentLineDown:nil];
-    [codeEditor setSelectedRange:[codeEditor.string lineRangeForRange:codeEditor.selectedRange]];
 }
 
-- (void)moveUpLineWithRange:(NSRange)range inTextView:(DVTSourceTextView*)codeEditor
+- (void) moveCurrentLineUpInTextView:(DVTSourceTextView*)codeEditor
 {
-    [codeEditor setSelectedRange:range];
     [codeEditor moveCurrentLineUp:nil];
-    [codeEditor setSelectedRange:[codeEditor.string lineRangeForRange:codeEditor.selectedRange]];
 }
 
-- (void)extractLocalVariableWithRange:(NSRange)range inTextView:(DVTSourceTextView *)codeEditor
+- (void) replaceWithPlaceHolderInRange:(NSRange)range inTextView:(DVTSourceTextView*)codeEditor
 {
-    [codeEditor setSelectedRange:range];
-    
-    @try {
-        if ([self isSelectedRangeInTextViewValid:codeEditor]) {
-            NSString *selectedMethod = [codeEditor.string substringWithRange:codeEditor.selectedRange];
-            [codeEditor replaceCharactersInRange:codeEditor.selectedRange withString:@"<#variable#>"];
-            NSRange block_start_line = [self getBlockStartLine:codeEditor];
-            [codeEditor setSelectedRange:NSMakeRange(block_start_line.location + block_start_line.length, 0)];
-            [codeEditor insertText:[NSString stringWithFormat:@"<#type#> <#variable#> = %@;", selectedMethod]];
-            [codeEditor insertNewline:NULL];
-            [codeEditor setSelectedRange:NSMakeRange(block_start_line.location + block_start_line.length, 0)];
-        }
-    }
-    @catch (NSException *exception) {
-        [self showAlertBox:exception];
-    }
+    [codeEditor replaceCharactersInRange:range withString:@"<#variable#>"];
 }
 
 - (NSRange)getBlockStartLine:(DVTSourceTextView *)codeEditor
@@ -106,6 +122,56 @@
     }
     
     return YES;
+}
+
+// interface to xcoderefactoringplus class
+- (void)deleteLineWithRange:(NSRange)range inTextView:(DVTSourceTextView*)codeEditor
+{
+    [self highlightLine:[self getLineRange:range inTextView:codeEditor] inTextView:codeEditor];
+    [self deleteLineInTextView:codeEditor];
+}
+
+- (void)duplicateLineWithRange:(NSRange)range inTextView:(DVTSourceTextView*)codeEditor
+{
+    NSRange linerange = [self getLineRange:range inTextView:codeEditor];
+    NSString *lineContent = [self getLineContentAtRange:linerange inTextView:codeEditor];
+    [self placeCursorAtLocation:linerange.location + linerange.length inTextView:codeEditor];
+    [self insertLine:lineContent inTextView:codeEditor];
+    [self highlightLine:NSMakeRange(linerange.location + linerange.length, linerange.length) inTextView:codeEditor];
+}
+
+- (void)moveDownLineWithRange:(NSRange)range inTextView:(DVTSourceTextView*)codeEditor
+{
+    [self placeCursorAtLocation:range.location inTextView:codeEditor];
+    [self moveCurrentLineDownInTextView:codeEditor];
+    [self highlightLine:[self getLineRangeForSelectedRangeInTextView:codeEditor] inTextView:codeEditor];
+}
+
+- (void)moveUpLineWithRange:(NSRange)range inTextView:(DVTSourceTextView*)codeEditor
+{
+    [self placeCursorAtLocation:range.location inTextView:codeEditor];
+    [self moveCurrentLineUpInTextView:codeEditor];
+    [self highlightLine:[self getLineRangeForSelectedRangeInTextView:codeEditor] inTextView:codeEditor];
+}
+
+- (void)extractLocalVariableWithRange:(NSRange)range inTextView:(DVTSourceTextView *)codeEditor
+{
+    [self highlightTextAtRange:range inTextView:codeEditor];
+    
+    @try {
+        if ([self isSelectedRangeInTextViewValid:codeEditor]) {
+            NSString *selectedMethod = [self getContentAtRange:range inTextView:codeEditor];
+            [self replaceWithPlaceHolderInRange:range inTextView:codeEditor];
+            NSRange block_start_line = [self getBlockStartLine:codeEditor];
+            [self placeCursorAtLocation:block_start_line.location + block_start_line.length inTextView:codeEditor];
+            [self insertLine:[NSString stringWithFormat:@"<#type#> <#variable#> = %@;", selectedMethod] inTextView:codeEditor];
+            [self insertNewLineInTextView:codeEditor];
+            [self placeCursorAtLocation:block_start_line.location + block_start_line.length inTextView:codeEditor];
+        }
+    }
+    @catch (NSException *exception) {
+        [self showAlertBox:exception];
+    }
 }
 
 - (void) showAlertBox:(NSException *)exception
