@@ -67,7 +67,6 @@
     [adapter highlightLine:[adapter getLineRangeForSelectedRange]];
 }
 
-// we need batch edit for better undo
 - (void)extractLocalVariableWithRange:(NSRange)range inTextView:(DVTSourceTextView *)codeEditor
 {
     DVTAdapter* adapter = [self.factory makeAdapterWithCodeEditor:codeEditor];

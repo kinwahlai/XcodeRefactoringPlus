@@ -25,6 +25,8 @@
 @implementation DVTAdapter
 @synthesize codeEditor;
 
+#define PLACEHOLDER @"<#variable#>"
+
 -(void)highlightLine:(NSRange)linerange
 {
     [self highlightTextAtRange:linerange];
@@ -117,7 +119,9 @@
 
 - (void) replaceWithPlaceHolderInRange:(NSRange)range
 {
-    [self.codeEditor replaceCharactersInRange:range withString:@"<#variable#>"];
+    [self.codeEditor shouldChangeTextInRange:range replacementString:PLACEHOLDER];
+    [self.codeEditor replaceCharactersInRange:range withString:PLACEHOLDER];
+    [self.codeEditor didChangeText];
 }
 
 - (void) insertNewLine
