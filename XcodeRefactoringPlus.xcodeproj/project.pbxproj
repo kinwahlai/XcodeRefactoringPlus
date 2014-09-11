@@ -178,17 +178,17 @@
 		8B5FED0918C738B2001BD004 /* XcodeRefactoringPlus */ = {
 			isa = PBXGroup;
 			children = (
+				3AFF61771991DD83007AB42E /* DVTAdapter.h */,
+				3AFF61781991DD83007AB42E /* DVTAdapter.m */,
+				3AFF61731991DB2F007AB42E /* DVTAdapterFactory.h */,
+				3AFF61741991DB2F007AB42E /* DVTAdapterFactory.m */,
 				8BFD8B6E18D4B944002CD274 /* RefactoringLogic.h */,
 				8BFD8B6F18D4B944002CD274 /* RefactoringLogic.m */,
+				8B1EF55118C97D610094D631 /* SimpleText.txt */,
+				8B5FED0A18C738B2001BD004 /* Supporting Files */,
 				8B06BBAB18CEA2B7004DD905 /* XcodeClasses */,
 				8B5FED0F18C738B2001BD004 /* XcodeRefactoringPlus.h */,
 				8B5FED1018C738B2001BD004 /* XcodeRefactoringPlus.m */,
-				8B5FED0A18C738B2001BD004 /* Supporting Files */,
-				8B1EF55118C97D610094D631 /* SimpleText.txt */,
-				3AFF61731991DB2F007AB42E /* DVTAdapterFactory.h */,
-				3AFF61741991DB2F007AB42E /* DVTAdapterFactory.m */,
-				3AFF61771991DD83007AB42E /* DVTAdapter.h */,
-				3AFF61781991DD83007AB42E /* DVTAdapter.m */,
 			);
 			path = XcodeRefactoringPlus;
 			sourceTree = "<group>";
