@@ -123,7 +123,6 @@
 			isa = PBXGroup;
 			children = (
 				8B06BBAC18CEA2B7004DD905 /* Xcode4 */,
-				8B06BBB218CEA2B7004DD905 /* Xcode5 */,
 			);
 			path = XcodeClasses;
 			sourceTree = "<group>";
@@ -138,13 +137,6 @@
 				8B06BBB118CEA2B7004DD905 /* IDESourceEditor.h */,
 			);
 			path = Xcode4;
-			sourceTree = "<group>";
-		};
-		8B06BBB218CEA2B7004DD905 /* Xcode5 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Xcode5;
 			sourceTree = "<group>";
 		};
 		8B5FECF918C738B1001BD004 = {
@@ -418,10 +410,8 @@
 		8B5FED1318C738B2001BD004 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
@@ -449,21 +439,19 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"${PROJECT_DIR}/XcodeRefactoringPlus/XcodeClasses",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/XcodeRefactoringPlus/XcodeClasses";
 			};
 			name = Debug;
 		};
 		8B5FED1418C738B2001BD004 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
@@ -486,10 +474,10 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"${PROJECT_DIR}/XcodeRefactoringPlus/XcodeClasses",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/XcodeRefactoringPlus/XcodeClasses";
 			};
 			name = Release;
 		};
@@ -506,10 +494,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XcodeRefactoringPlus/XcodeRefactoringPlus-Prefix.pch";
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"${PROJECT_DIR}/XcodeRefactoringPlus/XcodeClasses",
-				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "XcodeRefactoringPlus/XcodeRefactoringPlus-Info.plist";
 				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -530,10 +515,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XcodeRefactoringPlus/XcodeRefactoringPlus-Prefix.pch";
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"${PROJECT_DIR}/XcodeRefactoringPlus/XcodeClasses",
-				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "XcodeRefactoringPlus/XcodeRefactoringPlus-Info.plist";
 				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
 				PRODUCT_NAME = "$(TARGET_NAME)";
