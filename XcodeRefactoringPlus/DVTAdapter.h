@@ -19,8 +19,7 @@
 // THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
-
-@class DVTSourceTextView;
+#import <DVTSourceTextView.h>
 
 @interface DVTAdapter : NSObject
 @property DVTSourceTextView* codeEditor;

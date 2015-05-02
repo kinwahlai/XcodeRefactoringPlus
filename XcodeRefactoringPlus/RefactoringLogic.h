@@ -20,8 +20,7 @@
 
 #import <Foundation/Foundation.h>
 #import "DVTAdapterFactory.h"
-
-@class DVTSourceTextView;
+#import <DVTSourceTextView.h>
 
 @interface RefactoringLogic : NSObject
 @property id<DVTAdapterFactory> factory;

@@ -19,6 +19,7 @@
 // THE SOFTWARE.
 
 #import "DVTAdapterFactory.h"
+#import <DVTSourceTextView.h>
 
 @implementation DVTAdapterFactoryImpl
 -(DVTAdapter*)makeAdapterWithCodeEditor:(DVTSourceTextView *)codeEditor

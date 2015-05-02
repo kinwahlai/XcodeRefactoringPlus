@@ -20,8 +20,8 @@
 
 #import "XcodeRefactoringPlus.h"
 #import "RefactoringLogic.h"
-#import "DVTKit.h"
 #import "DVTAdapterFactory.h"
+#import <DVTSourceTextView.h>
 
 static XcodeRefactoringPlus *sharedPlugin;
 

@@ -20,8 +20,7 @@
 
 #import <Foundation/Foundation.h>
 #import "DVTAdapter.h"
-
-@class DVTSourceTextView;
+#import <DVTSourceTextView.h>
 
 @protocol DVTAdapterFactory <NSObject>
 -(DVTAdapter*)makeAdapterWithCodeEditor:(DVTSourceTextView*)codeEditor;

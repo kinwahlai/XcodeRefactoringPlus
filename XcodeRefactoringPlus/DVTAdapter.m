@@ -20,7 +20,9 @@
 
 #import "DVTAdapter.h"
 #import <AppKit/AppKit.h>
-#import "DVTKit.h"
+#import <DVTTextStorage.h>
+#import <DVTSourceModel.h>
+#import <DVTSourceModelItem.h>
 
 @implementation DVTAdapter
 @synthesize codeEditor;

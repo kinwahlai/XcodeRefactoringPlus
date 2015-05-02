@@ -20,7 +20,6 @@
 
 #import <AppKit/AppKit.h>
 #import "RefactoringLogic.h"
-#import "DVTKit.h"
 #import "DVTAdapter.h"
 
 @implementation RefactoringLogic
