@@ -3,8 +3,17 @@
 //
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
-#import <DVTKit/DVTTextView.h>
-#import <DVTKit/DVTLayoutManagerDelegate.h>
+#import <DVTTextView.h>
+@protocol DVTLayoutManagerDelegate;
+@protocol DVTCompletingTextViewDelegate;
+
+@class DVTTextCompletionController
+, DVTTextCompletionDataSource
+, DVTTextStorage
+, DVTLayoutManager
+, DVTSourceCodeLanguage
+, DVTFoldingManager
+, DVTFoldingLayoutManager;
 
 @interface DVTCompletingTextView : DVTTextView <DVTLayoutManagerDelegate>
 {
@@ -27,7 +36,6 @@
 @property(readonly) DVTTextCompletionController *completionController; // @synthesize completionController=_completionController;
 @property unsigned long long modifierFlagsAtLastSingleMouseDown; // @synthesize modifierFlagsAtLastSingleMouseDown=_modifierFlagsAtLastSingleMouseDown;
 @property double accessoryAnnotationWidth; // @synthesize accessoryAnnotationWidth=_accessoryAnnotationWidth;
-- (void).cxx_destruct;
 - (void)setMarkedText:(id)arg1 selectedRange:(struct _NSRange)arg2;
 - (void)becomeMainWindow;
 - (void)resignKeyWindow;

@@ -3,7 +3,17 @@
 //
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
+@protocol DVTSourceBufferProvider;
+@protocol DVTSourceLanguageServiceDelegate;
+@protocol DVTSourceLanguageSyntaxTypeService;
+@protocol DVTSourceLanguageSourceModelService;
+@protocol DVTTextStorageDelegate;
 
+@class DVTSourceLandmarkItem
+, DVTFontAndColorTheme
+, _LazyInvalidationHelper
+, DVTSourceLanguageService
+, DVTSourceModel;
 
 @interface DVTTextStorage : NSTextStorage <DVTSourceBufferProvider, DVTSourceLanguageServiceDelegate>
 {
@@ -57,7 +67,6 @@
 @property unsigned long long wrappedLineIndentWidth; // @synthesize wrappedLineIndentWidth=_wrappedLineIndentWidth;
 @property unsigned long long indentWidth; // @synthesize indentWidth=_indentWidth;
 @property double lastEditTimestamp; // @synthesize lastEditTimestamp=_lastEditTimestamp;
-- (void).cxx_destruct;
 - (id)updatedLocationFromLocation:(id)arg1 toTimestamp:(double)arg2;
 - (id)compatibleLocationFromLocation:(id)arg1;
 - (id)convertLocationToNativeNSStringEncodedLocation:(id)arg1;

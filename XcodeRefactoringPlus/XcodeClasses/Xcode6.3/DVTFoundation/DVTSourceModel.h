@@ -4,6 +4,10 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
+@class DVTCharStream
+, DVTSourceScanner
+, DVTSourceModelItem
+, DVTSourceModelParser;
 
 @interface DVTSourceModel : NSObject
 {
@@ -25,7 +29,6 @@
 @property(retain) DVTSourceModelItem *sourceItems; // @synthesize sourceItems=_sourceItems;
 @property(retain) DVTCharStream *inputStream; // @synthesize inputStream=_inputStream;
 @property id <DVTSourceBufferProvider> sourceBufferProvider; // @synthesize sourceBufferProvider=_sourceBufferProvider;
-- (void).cxx_destruct;
 - (id)objCMethodNameForItem:(id)arg1 nameRanges:(id *)arg2;
 - (BOOL)isItemDictionaryLiteral:(id)arg1;
 - (BOOL)isItemObjectLiteral:(id)arg1;

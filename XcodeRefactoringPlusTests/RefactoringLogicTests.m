@@ -25,7 +25,6 @@
 #define EXP_SHORTHAND
 #import <Expecta.h>
 #import "RefactoringLogic.h"
-#import "DVTKit.h"
 #import "DVTAdapterFactory.h"
 
 @interface FakeAdapterFactory : NSObject  <DVTAdapterFactory>

@@ -32,7 +32,6 @@
 @property(nonatomic) DVTSourceModelItem *parent; // @synthesize parent=_parent;
 @property long long token; // @synthesize token=_token;
 @property long long langId; // @synthesize langId=_langId;
-- (void).cxx_destruct;
 - (void)enumerateIdentifierItemsInRelativeRange:(struct _NSRange)arg1 usingBlock:(CDUnknownBlockType)arg2;
 - (void)clearAdjustedNodeTypes;
 - (long long)compare:(id)arg1;

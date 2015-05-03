@@ -3,10 +3,20 @@
 //
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
-@import AppKit;
+#import <AppKit/AppKit.h>
 #import <DVTCompletingTextView.h>
-#import <DVTSourceTextScrollViewDelegate.h>
-#import <DVTTextAnnotationIndicatorAnimation.h>
+#import <CDStructures.h>
+
+@protocol DVTSourceTextScrollViewDelegate;
+@protocol DVTSourceTextViewDelegate;
+
+@class DVTTextDocumentLocation
+, DVTTextAnnotationIndicatorAnimation
+, DVTTextPageGuideVisualization
+, DVTAnnotationManager
+, DVTHashTable
+, DVTMutableRangeArray
+, DVTObservingToken;
 
 @interface DVTSourceTextView : DVTCompletingTextView <NSAnimationDelegate, NSLayoutManagerDelegate, DVTSourceTextScrollViewDelegate>
 {
