@@ -71,27 +71,27 @@ static XcodeRefactoringPlus *sharedPlugin;
         unichar arrowKeyDown = NSDownArrowFunctionKey;
         unichar arrowKeyUp = NSUpArrowFunctionKey;
         [[menuItem submenu] addItem:[NSMenuItem separatorItem]];
-        
+
         NSMenuItem *deleteLineMenuItem = [[NSMenuItem alloc] initWithTitle:@"Delete Line" action:@selector(deleteLine) keyEquivalent:@"d"];
         [deleteLineMenuItem setKeyEquivalentModifierMask:NSCommandKeyMask];
         [deleteLineMenuItem setTarget:self];
         [[menuItem submenu] addItem:deleteLineMenuItem];
-        
+
         NSMenuItem *duplicateLineMenuItem = [[NSMenuItem alloc] initWithTitle:@"Duplicate Line" action:@selector(duplicateLine) keyEquivalent:[NSString stringWithCharacters:&arrowKeyDown length:1]];
         [duplicateLineMenuItem setTarget:self];
         [duplicateLineMenuItem setKeyEquivalentModifierMask:(NSCommandKeyMask | NSAlternateKeyMask)];
         [[menuItem submenu] addItem:duplicateLineMenuItem];
-        
+
         NSMenuItem *moveLineUpMenuItem = [[NSMenuItem alloc] initWithTitle:@"Move Line Up" action:@selector(moveLineUp) keyEquivalent:[NSString stringWithCharacters:&arrowKeyUp length:1]];
         [moveLineUpMenuItem setTarget:self];
         [moveLineUpMenuItem setKeyEquivalentModifierMask:(NSAlternateKeyMask)];
         [[menuItem submenu] addItem:moveLineUpMenuItem];
-        
+
         NSMenuItem *moveLineDownMenuItem = [[NSMenuItem alloc] initWithTitle:@"Move Line Down" action:@selector(moveLineDown) keyEquivalent:[NSString stringWithCharacters:&arrowKeyDown length:1]];
         [moveLineDownMenuItem setTarget:self];
         [moveLineDownMenuItem setKeyEquivalentModifierMask:(NSAlternateKeyMask)];
         [[menuItem submenu] addItem:moveLineDownMenuItem];
-        
+
         NSMenuItem *extractLocalVarMenuItem = [[NSMenuItem alloc] initWithTitle:@"Extract Local Variable" action:@selector(extractLocalVariable) keyEquivalent:@"l"];
         [extractLocalVarMenuItem setTarget:self];
         [extractLocalVarMenuItem setKeyEquivalentModifierMask:(NSCommandKeyMask | NSControlKeyMask)];
@@ -106,7 +106,7 @@ static XcodeRefactoringPlus *sharedPlugin;
     {
         return [self isFirstResponderATextView:[self getFirstResponder]];
     }
-        
+
     return NO;
 }
 
@@ -117,6 +117,7 @@ static XcodeRefactoringPlus *sharedPlugin;
 
 - (void)dealloc
 {
+    [super dealloc];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 

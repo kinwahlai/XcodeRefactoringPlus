@@ -13,6 +13,7 @@
 		3AFF617A1991DD83007AB42E /* DVTAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFF61781991DD83007AB42E /* DVTAdapter.m */; };
 		461128A262594A529524A0A0 /* libPods-XcodeRefactoringPlusTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1954A2DD7834494DA54C9886 /* libPods-XcodeRefactoringPlusTests.a */; };
 		5F3229B81AF513380070E49E /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 5F3223E21AF513320070E49E /* README.md */; };
+		5FFC7EDC1AF6117C00F8530E /* SwiftForRefactoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFC7EDB1AF6117C00F8530E /* SwiftForRefactoring.swift */; };
 		8B06BBB618CEAB92004DD905 /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B06BBB418CEAB92004DD905 /* DVTFoundation.framework */; };
 		8B06BBB718CEAB92004DD905 /* DVTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B06BBB518CEAB92004DD905 /* DVTKit.framework */; };
 		8B50EEE4193B9D0C0016EA2E /* ClassForRefactoring.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B0B2B0E18D9659A00DF42EA /* ClassForRefactoring.m */; };
@@ -13470,6 +13471,7 @@
 		5F32FFFD1AF513080070E49E /* XCRefactoringModuleItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCRefactoringModuleItem.h; sourceTree = "<group>"; };
 		5F32FFFE1AF513080070E49E /* XCRefactoringModuleNewFileItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCRefactoringModuleNewFileItem.h; sourceTree = "<group>"; };
 		5F32FFFF1AF513080070E49E /* XCRefactoringModuleOutlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCRefactoringModuleOutlineView.h; sourceTree = "<group>"; };
+		5FFC7EDB1AF6117C00F8530E /* SwiftForRefactoring.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftForRefactoring.swift; sourceTree = "<group>"; };
 		68419A8320BF436991C55061 /* libPods-XcodeRefactoringPlus.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XcodeRefactoringPlus.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B06BBB418CEAB92004DD905 /* DVTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTFoundation.framework; path = ../SharedFrameworks/DVTFoundation.framework; sourceTree = DEVELOPER_DIR; };
 		8B06BBB518CEAB92004DD905 /* DVTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTKit.framework; path = ../SharedFrameworks/DVTKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -28039,6 +28041,7 @@
 				8BFD8B7318D4B94F002CD274 /* RefactoringLogicTests.m */,
 				8BA63ABA18C835FE00B97466 /* XcodeRefactoringPlusTests.m */,
 				8BA63AB518C835FE00B97466 /* Supporting Files */,
+				5FFC7EDB1AF6117C00F8530E /* SwiftForRefactoring.swift */,
 			);
 			path = XcodeRefactoringPlusTests;
 			sourceTree = "<group>";
@@ -28209,6 +28212,7 @@
 				8B50EEE4193B9D0C0016EA2E /* ClassForRefactoring.m in Sources */,
 				3AFF61761991DB2F007AB42E /* DVTAdapterFactory.m in Sources */,
 				8BA63AC218C83BF500B97466 /* XcodeRefactoringPlus.m in Sources */,
+				5FFC7EDC1AF6117C00F8530E /* SwiftForRefactoring.swift in Sources */,
 				8BA63ABB18C835FE00B97466 /* XcodeRefactoringPlusTests.m in Sources */,
 				8BFD8B7218D4B944002CD274 /* RefactoringLogic.m in Sources */,
 				8BFD8B7418D4B94F002CD274 /* RefactoringLogicTests.m in Sources */,
@@ -28371,6 +28375,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D642D10DC671632913CD26AA /* Pods-XcodeRefactoringPlusTests.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -28385,7 +28390,9 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "XcodeRefactoringPlusTests/XcodeRefactoringPlusTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -28394,6 +28401,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 05E53DB7723317DDB0FDFB3E /* Pods-XcodeRefactoringPlusTests.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -28404,6 +28412,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XcodeRefactoringPlusTests/XcodeRefactoringPlusTests-Prefix.pch";
 				INFOPLIST_FILE = "XcodeRefactoringPlusTests/XcodeRefactoringPlusTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
 			};
