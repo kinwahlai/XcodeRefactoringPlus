@@ -1,0 +1,3 @@
+language: objective-c
+xcode_workspace: XcodeRefactoringPlus.xcworkspace
+xcode_scheme: XcodeRefactoringPlus

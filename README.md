@@ -1,4 +1,7 @@
-## Xcode Refactoring Plus
+Xcode Refactoring Plus
+==========
+
+[![Build Status](https://travis-ci.org/kinwahlai/XcodeRefactoringPlus.svg?branch=master)](https://travis-ci.org/kinwahlai/XcodeRefactoringPlus)
 
 I miss the refactoring function in eclipse so i create this plugin to extend the
  current refactoring function of xcode to functionality like move line, delete
