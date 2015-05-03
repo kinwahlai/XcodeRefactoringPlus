@@ -89,16 +89,16 @@
     DVTTextStorage *storage = self.codeEditor.textStorage;
     DVTSourceModel *model = [storage sourceModel];
     DVTSourceModelItem *selectedItem = [model adjoiningItemAtLocation:codeEditor.selectedRange.location];
-    
+
     NSRange modelRange = selectedItem.range;
-    
+
     // assuming [] method doesnt have next item
     DVTSourceModelItem *nextItem = selectedItem.nextItem;
-    
+
     if (nextItem) {
         modelRange.length += nextItem.range.length;
     }
-    
+
     if (!NSEqualRanges(modelRange, self.codeEditor.selectedRange)) {
         //raise
         NSException* myException = [NSException
@@ -107,7 +107,7 @@
                                     userInfo:NULL];
         @throw myException;
     }
-    
+
     return YES;
 }
 
@@ -121,8 +121,13 @@
 
 - (void) replaceWithPlaceHolderInRange:(NSRange)range
 {
-    [self.codeEditor shouldChangeTextInRange:range replacementString:PLACEHOLDER];
-    [self.codeEditor replaceCharactersInRange:range withString:PLACEHOLDER];
+    [self replaceInRange:range withString:PLACEHOLDER];
+}
+
+- (void) replaceInRange:(NSRange)range withString:(NSString*)replacement
+{
+    [self.codeEditor shouldChangeTextInRange:range replacementString:replacement];
+    [self.codeEditor replaceCharactersInRange:range withString:replacement];
     [self.codeEditor didChangeText];
 }
 
