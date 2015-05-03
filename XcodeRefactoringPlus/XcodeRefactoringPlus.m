@@ -97,6 +97,11 @@ static XcodeRefactoringPlus *sharedPlugin;
         [extractLocalVarMenuItem setKeyEquivalentModifierMask:(NSCommandKeyMask | NSControlKeyMask)];
         [[menuItem submenu] addItem:extractLocalVarMenuItem];
 
+        NSMenuItem *inlineLocalVarMenuItem = [[NSMenuItem alloc] initWithTitle:@"Inline Local Variable" action:@selector(inlineLocalVariable) keyEquivalent:@"i"];
+        [inlineLocalVarMenuItem setTarget:self];
+        [inlineLocalVarMenuItem setKeyEquivalentModifierMask:(NSCommandKeyMask | NSControlKeyMask)];
+        [[menuItem submenu] addItem:inlineLocalVarMenuItem];
+
     }
 }
 
@@ -165,6 +170,14 @@ static XcodeRefactoringPlus *sharedPlugin;
     if ([self isFirstResponderATextView:[self getFirstResponder]]) {
         DVTSourceTextView *dvtSourceTextView = (DVTSourceTextView*) [self getFirstResponder];
         [logic extractLocalVariableWithRange:dvtSourceTextView.selectedRange inTextView:dvtSourceTextView];
+    }
+}
+
+-(void)inlineLocalVariable
+{
+    if ([self isFirstResponderATextView:[self getFirstResponder]]) {
+        DVTSourceTextView *dvtSourceTextView = (DVTSourceTextView*) [self getFirstResponder];
+        [logic inlineLocalVariableWithRange:dvtSourceTextView.selectedRange inTextView:dvtSourceTextView];
     }
 }
 

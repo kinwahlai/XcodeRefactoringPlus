@@ -30,4 +30,5 @@
 - (void)moveDownLineWithRange:(NSRange)range inTextView:(DVTSourceTextView*)codeEditor;
 - (void)moveUpLineWithRange:(NSRange)range inTextView:(DVTSourceTextView*)codeEditor;
 - (void)extractLocalVariableWithRange:(NSRange)range inTextView:(DVTSourceTextView*)codeEditor;
+- (void)inlineLocalVariableWithRange:(NSRange)range inTextView:(DVTSourceTextView*)codeEditor;
 @end

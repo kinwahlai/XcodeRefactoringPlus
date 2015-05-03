@@ -87,6 +87,14 @@
     }
 }
 
+- (void)inlineLocalVariableWithRange:(NSRange)range inTextView:(DVTSourceTextView *)codeEditor
+{
+  NSAlert *alert = [[NSAlert alloc] init];
+  [alert setAlertStyle:NSInformationalAlertStyle];
+  [alert setMessageText:@"Inline local variable - coming soon"];
+  [alert runModal];
+}
+
 - (void) showAlertBox:(NSException *)exception
 {
     NSAlert *alert = [[NSAlert alloc] init];
