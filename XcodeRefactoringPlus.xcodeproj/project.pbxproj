@@ -10625,6 +10625,7 @@
 		5F3229B51AF513380070E49E /* XDTableColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDTableColumn.h; sourceTree = "<group>"; };
 		5F3229B61AF513380070E49E /* XDTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDTableView.h; sourceTree = "<group>"; };
 		5F3229B71AF513380070E49E /* XDTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDTableViewCell.h; sourceTree = "<group>"; };
+		5F3229B91AF59E260070E49E /* CDStructures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDStructures.h; sourceTree = "<group>"; };
 		5F32F4D61AF512FC0070E49E /* IBCarbonDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBCarbonDocument.h; sourceTree = "<group>"; };
 		5F32F4D71AF512FC0070E49E /* IBCarbonHILayoutInfo-IBCarbonHILayoutInfoHIViewSizeInspectorIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IBCarbonHILayoutInfo-IBCarbonHILayoutInfoHIViewSizeInspectorIntegration.h"; sourceTree = "<group>"; };
 		5F32F4D81AF512FC0070E49E /* IBCarbonHILayoutInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBCarbonHILayoutInfo.h; sourceTree = "<group>"; };
@@ -15398,6 +15399,7 @@
 				5F3207491AF5130F0070E49E /* QLPreviewViewDelegate.h */,
 				5F32074A1AF5130F0070E49E /* ScrollableTabBarMaskingContainerView.h */,
 				5F32074B1AF5130F0070E49E /* ViewActionForwardingLayerDelegate.h */,
+				5F3229B91AF59E260070E49E /* CDStructures.h */,
 			);
 			path = DVTKit;
 			sourceTree = "<group>";
