@@ -1,0 +1,16 @@
+PODS:
+  - Expecta (0.2.4)
+  - OCMock (2.2.4)
+  - Swizzlean (0.1.2)
+
+DEPENDENCIES:
+  - Expecta (~> 0.2.3)
+  - OCMock (~> 2.2.3)
+  - Swizzlean (~> 0.1.1)
+
+SPEC CHECKSUMS:
+  Expecta: cfaf1d3e2e194ca704a25e997093d30a1ce70b61
+  OCMock: a6a7dc0e3997fb9f35d99f72528698ebf60d64f2
+  Swizzlean: 164ef9d428a35ef61a404747ab40010f303dffa2
+
+COCOAPODS: 0.36.0
