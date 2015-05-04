@@ -4,6 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
+@class DVTLanguageSpecification;
 
 @interface DVTSourceCodeLanguage : NSObject <NSCopying>
 {
@@ -35,7 +36,6 @@
 @property(readonly, copy) NSString *documentationAbbreviation; // @synthesize documentationAbbreviation=_documentationAbbreviation;
 @property(readonly, copy) NSString *languageName; // @synthesize languageName=_languageName;
 @property(readonly, copy) NSString *identifier; // @synthesize identifier=_identifier;
-- (void).cxx_destruct;
 - (id)blockCommentCircumfixes;
 - (id)lineCommentPrefixes;
 - (BOOL)conformsToLanguage:(id)arg1;

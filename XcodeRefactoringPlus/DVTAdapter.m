@@ -23,6 +23,7 @@
 #import <DVTTextStorage.h>
 #import <DVTSourceModel.h>
 #import <DVTSourceModelItem.h>
+#import <DVTSourceCodeLanguage.h>
 
 @implementation DVTAdapter
 @synthesize codeEditor;
@@ -87,6 +88,15 @@
 -(BOOL)isSelectedRangeInTextViewValid
 {
     DVTTextStorage *storage = self.codeEditor.textStorage;
+    if ([storage.language.identifier isEqualToString:@"Xcode.SourceCodeLanguage.Swift"]) {
+      //raise
+      NSException* swiftException = [NSException
+                                  exceptionWithName:@"RefactoringPlusSwiftException"
+                                  reason:@"Xcode does not support swift refactoring"
+                                  userInfo:NULL];
+      @throw swiftException;
+    }
+  
     DVTSourceModel *model = [storage sourceModel];
     DVTSourceModelItem *selectedItem = [model adjoiningItemAtLocation:codeEditor.selectedRange.location];
 
