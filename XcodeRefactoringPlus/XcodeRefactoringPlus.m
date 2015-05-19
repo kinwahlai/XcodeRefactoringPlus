@@ -50,7 +50,9 @@ static XcodeRefactoringPlus *sharedPlugin;
     if (self = [self initWithLogic:[[RefactoringLogic alloc] initWithAdapterFactory:[[DVTAdapterFactoryImpl alloc] init]]]) {
         // reference to plugin's bundle, for resource acccess
         self.bundle = plugin;
-        [self setupSubMenu:[[[[NSApp mainMenu] itemWithTitle:@"Edit"] submenu] itemWithTitle:@"Refactor"]];
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self setupSubMenu:[[[[NSApp mainMenu] itemWithTitle:@"Edit"] submenu] itemWithTitle:@"Refactor"]];
+        }];
     }
     return self;
 }
