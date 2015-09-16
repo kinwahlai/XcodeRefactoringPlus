@@ -38,20 +38,11 @@ You will need to update the placeholder token manually.
 * install from alcatraz
 * restart xcode
 
-####Notes:
-If you cannot use the keystroke, kindly resolve conflict keybinding in
+## Update keybinding:
+If you cannot use the keystroke, please resolve conflict keybinding in
 System Preferences -> Keyboard -> Shortcuts -> App Shortcuts
 #####Alternative:
 You can download my keybinding file [XcodeRefactoringPlus.idekeybindings](https://github.com/kinwahlai/XcodeRefactoringPlus/blob/master/XcodeRefactoringPlus.idekeybindings) and then put it at *~/Library/Developer/Xcode/UserData/KeyBindings/XcodeRefactoringPlus.idekeybindings*
-
-
----
-## TODO
-+ Refactor textview manipulation login into separate class
-
-####Done
-+ ~~Package plugin for Alcatraz xcode plugin manager~~
-+ ~~**New Feature : ** Extract Local variable.~~
 
 ---
 ## License
