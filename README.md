@@ -44,6 +44,20 @@ System Preferences -> Keyboard -> Shortcuts -> App Shortcuts
 #####Alternative:
 You can download my keybinding file [XcodeRefactoringPlus.idekeybindings](https://github.com/kinwahlai/XcodeRefactoringPlus/blob/master/XcodeRefactoringPlus.idekeybindings) and then put it at *~/Library/Developer/Xcode/UserData/KeyBindings/XcodeRefactoringPlus.idekeybindings*
 
+## What to do if Xcode 6.4 doesn't load the plugin
+Apple change the non-Apple plugin handling since Xcode 6.4. Now Xcode will ask you if you want to load the bundle (for once) on startup.
+However, there are times we accidentally click Skip Bundles, then what should we do?
+
+Don't panic. You can reset the storage of your choice (Load bundle/skip bundles) with this command.
+
+```
+
+defaults delete com.apple.dt.Xcode DVTPlugInManagerNonApplePlugIns-Xcode-6.4
+
+```
+
+Restart Xcode and it will should you the prompt again.
+
 ---
 ## License
 ```
