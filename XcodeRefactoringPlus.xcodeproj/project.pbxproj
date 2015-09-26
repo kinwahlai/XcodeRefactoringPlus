@@ -28072,6 +28072,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8B5FED1518C738B2001BD004 /* Build configuration list for PBXNativeTarget "XcodeRefactoringPlus" */;
 			buildPhases = (
+				5F4AE40E1BB750C700F37CC1 /* ShellScript */,
 				8B5FECFE18C738B1001BD004 /* Sources */,
 				8B5FECFF18C738B1001BD004 /* Frameworks */,
 				8B5FED0018C738B1001BD004 /* Resources */,
@@ -28159,6 +28160,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		5F4AE40E1BB750C700F37CC1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PROJECT_DIR\"/inject_DVTPlugInCompatibilityUUID.sh";
+		};
 		654BB7E1FD1544E59B732306 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
