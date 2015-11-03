@@ -50,7 +50,7 @@ echo "Currently working with this info plist file ==> $INFOPLIST_FILE"
 for xcode in /Applications/Xcode*.app; do
   COMPATIBILITYUUID_ARRAY=$(read_DVTPlugInCompatibilityUUIDs "${INFOPLIST_FILE}")
 
-  NEW_COMPATIBILITYUUID=$(get_new_DVTPlugInCompatibilityUUID $xcode)
+  NEW_COMPATIBILITYUUID=$(get_new_DVTPlugInCompatibilityUUID "$xcode")
   echo "from ==> [$xcode] , found DVTPlugInCompatibilityUUID [$NEW_COMPATIBILITYUUID]"
 
   IS_ADDED=$(check_new_DVTPlugInCompatibilityUUID_added "$COMPATIBILITYUUID_ARRAY" "$NEW_COMPATIBILITYUUID")
