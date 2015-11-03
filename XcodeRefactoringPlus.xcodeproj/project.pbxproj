@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		5F59DC9D1BE95A560029D18D /* InjectDVTPlugInCompatibilityUUID */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 5F59DC9E1BE95A570029D18D /* Build configuration list for PBXAggregateTarget "InjectDVTPlugInCompatibilityUUID" */;
+			buildPhases = (
+				5F59DCA11BE95A5F0029D18D /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = InjectDVTPlugInCompatibilityUUID;
+			productName = InjectDVTPlugInCompatibilityUUID;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		3AFF61751991DB2F007AB42E /* DVTAdapterFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFF61741991DB2F007AB42E /* DVTAdapterFactory.m */; };
 		3AFF61761991DB2F007AB42E /* DVTAdapterFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFF61741991DB2F007AB42E /* DVTAdapterFactory.m */; };
@@ -41,6 +55,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		5F59DCA21BE95A950029D18D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8B5FECFA18C738B1001BD004 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5F59DC9D1BE95A560029D18D;
+			remoteInfo = InjectDVTPlugInCompatibilityUUID;
+		};
 		8BA63ABD18C835FE00B97466 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8B5FECFA18C738B1001BD004 /* Project object */;
@@ -28072,7 +28093,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8B5FED1518C738B2001BD004 /* Build configuration list for PBXNativeTarget "XcodeRefactoringPlus" */;
 			buildPhases = (
-				5F4AE40E1BB750C700F37CC1 /* ShellScript */,
 				8B5FECFE18C738B1001BD004 /* Sources */,
 				8B5FECFF18C738B1001BD004 /* Frameworks */,
 				8B5FED0018C738B1001BD004 /* Resources */,
@@ -28080,6 +28100,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				5F59DCA31BE95A950029D18D /* PBXTargetDependency */,
 			);
 			name = XcodeRefactoringPlus;
 			productName = XcodeRefactoringPlus;
@@ -28115,6 +28136,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = KinWah;
 				TargetAttributes = {
+					5F59DC9D1BE95A560029D18D = {
+						CreatedOnToolsVersion = 6.4;
+					};
 					8BA63AB018C835FE00B97466 = {
 						TestTargetID = 8B5FED0118C738B1001BD004;
 					};
@@ -28134,6 +28158,7 @@
 			targets = (
 				8B5FED0118C738B1001BD004 /* XcodeRefactoringPlus */,
 				8BA63AB018C835FE00B97466 /* XcodeRefactoringPlusTests */,
+				5F59DC9D1BE95A560029D18D /* InjectDVTPlugInCompatibilityUUID */,
 			);
 		};
 /* End PBXProject section */
@@ -28160,7 +28185,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		5F4AE40E1BB750C700F37CC1 /* ShellScript */ = {
+		5F59DCA11BE95A5F0029D18D /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -28171,7 +28196,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"$PROJECT_DIR\"/inject_DVTPlugInCompatibilityUUID.sh";
+			shellScript = "echo \"=== InjectDVTPlugInCompatibilityUUID starts ===\"\n\n\"$PROJECT_DIR\"/inject_DVTPlugInCompatibilityUUID.sh";
 		};
 		654BB7E1FD1544E59B732306 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -28236,6 +28261,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		5F59DCA31BE95A950029D18D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5F59DC9D1BE95A560029D18D /* InjectDVTPlugInCompatibilityUUID */;
+			targetProxy = 5F59DCA21BE95A950029D18D /* PBXContainerItemProxy */;
+		};
 		8BA63ABE18C835FE00B97466 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8B5FED0118C738B1001BD004 /* XcodeRefactoringPlus */;
@@ -28263,6 +28293,20 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		5F59DC9F1BE95A570029D18D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		5F59DCA01BE95A570029D18D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		8B5FED1318C738B2001BD004 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -28435,6 +28479,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		5F59DC9E1BE95A570029D18D /* Build configuration list for PBXAggregateTarget "InjectDVTPlugInCompatibilityUUID" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5F59DC9F1BE95A570029D18D /* Debug */,
+				5F59DCA01BE95A570029D18D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		8B5FECFD18C738B1001BD004 /* Build configuration list for PBXProject "XcodeRefactoringPlus" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
