@@ -28446,8 +28446,9 @@
 				DSTROOT = "$(HOME)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SYSTEM_DEVELOPER_DIR)/../Frameworks",
-					"$(SYSTEM_DEVELOPER_DIR)/../SharedFrameworks",
+					"\"$(DEVELOPER_DIR)/../SharedFrameworks\"",
+					"\"$(DEVELOPER_DIR)/../OtherFrameworks\"",
+					"\"$(DEVELOPER_DIR)/../Frameworks\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XcodeRefactoringPlus/XcodeRefactoringPlus-Prefix.pch";
@@ -28472,8 +28473,9 @@
 				DSTROOT = "$(HOME)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SYSTEM_DEVELOPER_DIR)/../Frameworks",
-					"$(SYSTEM_DEVELOPER_DIR)/../SharedFrameworks",
+					"\"$(DEVELOPER_DIR)/../SharedFrameworks\"",
+					"\"$(DEVELOPER_DIR)/../OtherFrameworks\"",
+					"\"$(DEVELOPER_DIR)/../Frameworks\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XcodeRefactoringPlus/XcodeRefactoringPlus-Prefix.pch";
@@ -28495,10 +28497,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
-					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/SharedFrameworks",
-					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks",
+					"\"$(DEVELOPER_DIR)/../SharedFrameworks\"",
+					"\"$(DEVELOPER_DIR)/../OtherFrameworks\"",
+					"\"$(DEVELOPER_DIR)/../Frameworks\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XcodeRefactoringPlusTests/XcodeRefactoringPlusTests-Prefix.pch";
@@ -28522,10 +28524,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
-					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/SharedFrameworks",
-					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks",
+					"\"$(DEVELOPER_DIR)/../SharedFrameworks\"",
+					"\"$(DEVELOPER_DIR)/../OtherFrameworks\"",
+					"\"$(DEVELOPER_DIR)/../Frameworks\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XcodeRefactoringPlusTests/XcodeRefactoringPlusTests-Prefix.pch";
