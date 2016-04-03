@@ -52,6 +52,7 @@
 		8BFD8B7118D4B944002CD274 /* RefactoringLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFD8B6F18D4B944002CD274 /* RefactoringLogic.m */; };
 		8BFD8B7218D4B944002CD274 /* RefactoringLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFD8B6F18D4B944002CD274 /* RefactoringLogic.m */; };
 		8BFD8B7418D4B94F002CD274 /* RefactoringLogicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFD8B7318D4B94F002CD274 /* RefactoringLogicTests.m */; };
+		B39B355ED033702AD089F2E7 /* libPods-XcodeRefactoringPlus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68419A8320BF436991C55061 /* libPods-XcodeRefactoringPlus.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,7 +74,9 @@
 
 /* Begin PBXFileReference section */
 		05E53DB7723317DDB0FDFB3E /* Pods-XcodeRefactoringPlusTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XcodeRefactoringPlusTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-XcodeRefactoringPlusTests/Pods-XcodeRefactoringPlusTests.release.xcconfig"; sourceTree = "<group>"; };
+		09AA0DA03842CDB49C2E318E /* Pods-XcodeRefactoringPlus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XcodeRefactoringPlus.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XcodeRefactoringPlus/Pods-XcodeRefactoringPlus.debug.xcconfig"; sourceTree = "<group>"; };
 		1954A2DD7834494DA54C9886 /* libPods-XcodeRefactoringPlusTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XcodeRefactoringPlusTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		33849350E065E26D050D7CAB /* Pods-XcodeRefactoringPlus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XcodeRefactoringPlus.release.xcconfig"; path = "Pods/Target Support Files/Pods-XcodeRefactoringPlus/Pods-XcodeRefactoringPlus.release.xcconfig"; sourceTree = "<group>"; };
 		3AFF61731991DB2F007AB42E /* DVTAdapterFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTAdapterFactory.h; sourceTree = "<group>"; };
 		3AFF61741991DB2F007AB42E /* DVTAdapterFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVTAdapterFactory.m; sourceTree = "<group>"; };
 		3AFF61771991DD83007AB42E /* DVTAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTAdapter.h; sourceTree = "<group>"; };
@@ -13532,6 +13535,7 @@
 				8B5FED0818C738B2001BD004 /* Foundation.framework in Frameworks */,
 				8B06BBB618CEAB92004DD905 /* DVTFoundation.framework in Frameworks */,
 				8B06BBB718CEAB92004DD905 /* DVTKit.framework in Frameworks */,
+				B39B355ED033702AD089F2E7 /* libPods-XcodeRefactoringPlus.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -28082,6 +28086,8 @@
 			children = (
 				D642D10DC671632913CD26AA /* Pods-XcodeRefactoringPlusTests.debug.xcconfig */,
 				05E53DB7723317DDB0FDFB3E /* Pods-XcodeRefactoringPlusTests.release.xcconfig */,
+				09AA0DA03842CDB49C2E318E /* Pods-XcodeRefactoringPlus.debug.xcconfig */,
+				33849350E065E26D050D7CAB /* Pods-XcodeRefactoringPlus.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -28093,9 +28099,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8B5FED1518C738B2001BD004 /* Build configuration list for PBXNativeTarget "XcodeRefactoringPlus" */;
 			buildPhases = (
+				70B8957DB27ACA8DBA8E2141 /* Check Pods Manifest.lock */,
 				8B5FECFE18C738B1001BD004 /* Sources */,
 				8B5FECFF18C738B1001BD004 /* Frameworks */,
 				8B5FED0018C738B1001BD004 /* Resources */,
+				0DAA1FA375294FE28ADECB5F /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -28116,6 +28124,7 @@
 				8BA63AAE18C835FE00B97466 /* Frameworks */,
 				8BA63AAF18C835FE00B97466 /* Resources */,
 				654BB7E1FD1544E59B732306 /* Copy Pods Resources */,
+				45423AD217DE5545998A8786 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -28133,7 +28142,7 @@
 		8B5FECFA18C738B1001BD004 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = KinWah;
 				TargetAttributes = {
 					5F59DC9D1BE95A560029D18D = {
@@ -28185,6 +28194,36 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0DAA1FA375294FE28ADECB5F /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-XcodeRefactoringPlus/Pods-XcodeRefactoringPlus-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		45423AD217DE5545998A8786 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-XcodeRefactoringPlusTests/Pods-XcodeRefactoringPlusTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		5F59DCA11BE95A5F0029D18D /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -28211,6 +28250,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-XcodeRefactoringPlusTests/Pods-XcodeRefactoringPlusTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		70B8957DB27ACA8DBA8E2141 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		DA43B07E128B49EFBF1CB178 /* Check Pods Manifest.lock */ = {
@@ -28321,6 +28375,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -28383,6 +28438,7 @@
 		};
 		8B5FED1618C738B2001BD004 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 09AA0DA03842CDB49C2E318E /* Pods-XcodeRefactoringPlus.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -28390,14 +28446,16 @@
 				DSTROOT = "$(HOME)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SYSTEM_DEVELOPER_DIR)/../Frameworks",
-					"$(SYSTEM_DEVELOPER_DIR)/../SharedFrameworks",
+					"\"$(DEVELOPER_DIR)/../SharedFrameworks\"",
+					"\"$(DEVELOPER_DIR)/../OtherFrameworks\"",
+					"\"$(DEVELOPER_DIR)/../Frameworks\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XcodeRefactoringPlus/XcodeRefactoringPlus-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "XcodeRefactoringPlus/XcodeRefactoringPlus-Info.plist";
 				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kinwah.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/XcodeRefactoringPlus/XcodeClasses/Xcode6.3/**";
@@ -28407,6 +28465,7 @@
 		};
 		8B5FED1718C738B2001BD004 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 33849350E065E26D050D7CAB /* Pods-XcodeRefactoringPlus.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -28414,14 +28473,16 @@
 				DSTROOT = "$(HOME)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SYSTEM_DEVELOPER_DIR)/../Frameworks",
-					"$(SYSTEM_DEVELOPER_DIR)/../SharedFrameworks",
+					"\"$(DEVELOPER_DIR)/../SharedFrameworks\"",
+					"\"$(DEVELOPER_DIR)/../OtherFrameworks\"",
+					"\"$(DEVELOPER_DIR)/../Frameworks\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XcodeRefactoringPlus/XcodeRefactoringPlus-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "XcodeRefactoringPlus/XcodeRefactoringPlus-Info.plist";
 				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kinwah.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/XcodeRefactoringPlus/XcodeClasses/Xcode6.3/**";
@@ -28436,10 +28497,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
-					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/SharedFrameworks",
-					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks",
+					"\"$(DEVELOPER_DIR)/../SharedFrameworks\"",
+					"\"$(DEVELOPER_DIR)/../OtherFrameworks\"",
+					"\"$(DEVELOPER_DIR)/../Frameworks\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XcodeRefactoringPlusTests/XcodeRefactoringPlusTests-Prefix.pch";
@@ -28449,6 +28510,7 @@
 				);
 				INFOPLIST_FILE = "XcodeRefactoringPlusTests/XcodeRefactoringPlusTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kinwah.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = xctest;
@@ -28462,15 +28524,16 @@
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
-					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/SharedFrameworks",
-					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks",
+					"\"$(DEVELOPER_DIR)/../SharedFrameworks\"",
+					"\"$(DEVELOPER_DIR)/../OtherFrameworks\"",
+					"\"$(DEVELOPER_DIR)/../Frameworks\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XcodeRefactoringPlusTests/XcodeRefactoringPlusTests-Prefix.pch";
 				INFOPLIST_FILE = "XcodeRefactoringPlusTests/XcodeRefactoringPlusTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kinwah.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -28486,6 +28549,7 @@
 				5F59DCA01BE95A570029D18D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8B5FECFD18C738B1001BD004 /* Build configuration list for PBXProject "XcodeRefactoringPlus" */ = {
 			isa = XCConfigurationList;
